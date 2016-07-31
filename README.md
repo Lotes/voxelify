@@ -9,4 +9,4 @@ It will be reused in my web interface project "beads3d".
 
 	npm install -g voxelify
 	voxelify model.obj --size 20 --output result.png
-	//creates a 20 x 400 PNG image (20 layers à 20 x 20 pixels)
+	//creates a 20 x 400 PNG image (20 layers with 20 x 20 pixels)
