@@ -2,6 +2,8 @@ const THREE = require('three')
 require('../lib/Projector')(THREE)
 require('../lib/CanvasRenderer')(THREE)
 require('three-obj-loader')(THREE)
+require('../lib/MTLLoader')(THREE)
+require('../lib/OBJMTLLoader')(THREE)
 require('../lib/NodeLoader')(THREE)
 require('../lib/globals')
 const path = require('path')
@@ -17,8 +19,8 @@ describe('THREE basics', function() {
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
 
   function load(done) {
-    const loader = new THREE.OBJLoader()
-    loader.load(url, function(object) {
+    const loader = new THREE.OBJMTLLoader()
+    loader.loadByOBJ(url, function(object) {
       done(null, object)
     }, null, done)
   }
@@ -71,28 +73,33 @@ describe('THREE basics', function() {
 
     var scene = new THREE.Scene()
     var camera = new THREE.PerspectiveCamera( 75, WIDTH / HEIGHT, 0.1, 1000 )
+    var light = new THREE.DirectionalLight( 0xffffff );
     camera.position.set(20, 20, 20)
     camera.up = new THREE.Vector3(0, 1, 0)
     camera.lookAt(new THREE.Vector3(0, 0, 0))
+    light.position.set(20, 20, 20)
+    light.target.position.set(0, 0, 0)
     scene.add(camera)
+    scene.add(light)
     var canvas = new Canvas()
     var renderer = new THREE.CanvasRenderer({
       canvas: canvas
     })
-    renderer.setClearColor(0x0000ff, 1)
+    renderer.setClearColor(0x000000, 0)
     renderer.setSize(WIDTH, HEIGHT, false)
 
     load(function(err, object) {
       if(err) return done(err)
+      setTimeout(function() {
+        scene.add(object)
+        renderer.render(scene, camera)
 
-      scene.add(object)
-      renderer.render(scene, camera)
-
-      var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'render.png'))
-      canvas.toBuffer(function(err, data) {
-        out.write(data);
-        done()
-      })
+        var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'render.png'))
+        canvas.toBuffer(function(err, data) {
+          out.write(data);
+          done()
+        })
+      }, 2000)
     })
   })
 })
