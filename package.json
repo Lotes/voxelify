@@ -4,6 +4,7 @@
   "description": "This project can be used to transform a 3D model (OBJ file) into voxel information (3D pixels).",
   "main": "lib/index.js",
   "dependencies": {
+    "bluebird": "^3.4.1",
     "canvas": "^1.4.0",
     "three": "^0.79.0"
   },

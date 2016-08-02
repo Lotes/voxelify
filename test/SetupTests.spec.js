@@ -1,11 +1,5 @@
-const THREE = require('three')
-require('../lib/Projector')(THREE)
-require('../lib/CanvasRenderer')(THREE)
-require('three-obj-loader')(THREE)
-require('../lib/MTLLoader')(THREE)
-require('../lib/OBJMTLLoader')(THREE)
-require('../lib/NodeLoader')(THREE)
-require('../lib/globals')
+const nodeThree = require('../lib/node-three/index')
+const THREE = nodeThree.THREE
 const path = require('path')
 const Canvas = require('canvas')
 const fs = require('fs')
@@ -18,66 +12,42 @@ describe('THREE basics', function() {
   const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
 
-  function load(done) {
-    const loader = new THREE.OBJMTLLoader()
-    loader.loadByOBJ(url, function(object) {
-      done(null, object)
-    }, null, done)
-  }
-
-  it('should load OBJ file', function(done) {
+  it('should load OBJ file', function() {
     this.timeout(1000)
-    load(function(err, object) {
-      if(err) return done(err)
-      object.should.be.ok()
-      done()
-    })
-  })
-
-  it('should transform OBJ', function(done) {
-    this.timeout(1000)
-    const loader = new THREE.OBJLoader()
-    load(function(err, object) {
-      if(err) return done(err)
-      var geometry = new THREE.Geometry()
-      object.updateMatrix()
-      object.traverse(child => {
-        const childGeometry = child.geometry
-        if(childGeometry instanceof THREE.BufferGeometry)
-          geometry.merge(new THREE.Geometry().fromBufferGeometry(childGeometry), child.matrix)
-        else if(childGeometry instanceof THREE.Geometry)
-          geometry.merge(childGeometry, child.matrix)
+    return nodeThree.loadOBJ(url)
+      .then(function(object) {
+        object.should.be.ok()
       })
-      var mesh = new THREE.Mesh(geometry, object.material)
-      var box = new THREE.Box3().setFromObject(mesh)
-      var size = box.size()
-      var scale = 1 / Math.max(size.x, size.y, size.z)
-      var matrix = new THREE.Matrix4().makeScale(scale, scale, scale)
-      mesh.applyMatrix(matrix)
-
-      const epsilon = 0.00001
-      box = new THREE.Box3().setFromObject(mesh)
-      size = box.size()
-      size.x.should.not.be.above(1 + epsilon)
-      size.y.should.not.be.above(1 + epsilon)
-      size.z.should.not.be.above(1 + epsilon)
-      done()
-    })
   })
 
-  it('should render scene', function(done) {
+  it('should transform OBJ', function() {
+    this.timeout(1000)
+    return nodeThree.loadOBJ(url)
+      .then(nodeThree.normalizeSize)
+      .then(function(mesh) {
+        const epsilon = 0.00001
+        var box = new THREE.Box3().setFromObject(mesh)
+        var size = box.size()
+        size.x.should.not.be.above(1 + epsilon)
+        size.y.should.not.be.above(1 + epsilon)
+        size.z.should.not.be.above(1 + epsilon)
+      })
+  })
+
+  it('should render scene', function() {
     this.timeout(10000)
 
     const WIDTH = 600
     const HEIGHT = 400
+    const DISTANCE  = 1
 
     var scene = new THREE.Scene()
     var camera = new THREE.PerspectiveCamera( 75, WIDTH / HEIGHT, 0.1, 1000 )
     var light = new THREE.DirectionalLight( 0xffffff );
-    camera.position.set(20, 20, 20)
+    camera.position.set(DISTANCE, 0, DISTANCE)
     camera.up = new THREE.Vector3(0, 1, 0)
     camera.lookAt(new THREE.Vector3(0, 0, 0))
-    light.position.set(20, 20, 20)
+    light.position = camera.position
     light.target.position.set(0, 0, 0)
     scene.add(camera)
     scene.add(light)
@@ -88,18 +58,20 @@ describe('THREE basics', function() {
     renderer.setClearColor(0x000000, 0)
     renderer.setSize(WIDTH, HEIGHT, false)
 
-    load(function(err, object) {
-      if(err) return done(err)
-      setTimeout(function() {
+    return nodeThree.loadOBJ(url)
+      .then(nodeThree.normalizeSize)
+      .delay(1000)
+      .then(function(object) {
         scene.add(object)
         renderer.render(scene, camera)
-
         var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'render.png'))
-        canvas.toBuffer(function(err, data) {
-          out.write(data);
-          done()
+        return new Promise(function(resolve, reject) {
+          canvas.toBuffer(function(err, data) {
+            if(err) return reject(err)
+            out.write(data);
+            resolve()
+          })
         })
-      }, 2000)
-    })
+      })
   })
 })
