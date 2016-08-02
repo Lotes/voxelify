@@ -6,6 +6,7 @@
   "dependencies": {
     "bluebird": "^3.4.1",
     "canvas": "^1.4.0",
+    "gifencoder": "^1.0.6",
     "three": "^0.79.0"
   },
   "devDependencies": {
