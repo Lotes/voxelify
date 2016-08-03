@@ -42,7 +42,6 @@ describe('THREE basics', function() {
       .then(function(mesh) {
         return nodeThree.captureByCamera(mesh, 600, 400)
       })
-      .delay(1000)
       .then(function(scene) {
         var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'render.png'))
         return scene.renderToStream(out)
@@ -58,7 +57,6 @@ describe('THREE basics', function() {
       .then(function(mesh) {
         return nodeThree.captureByCamera(mesh, WIDTH, HEIGHT)
       })
-      .delay(1000)
       .then(function(scene) {
         var angles = []
         for(var angle = 0; angle < 360; angle+=20)
@@ -71,14 +69,12 @@ describe('THREE basics', function() {
         encoder.setRepeat(0);   // 0 for repeat, -1 for no-repeat
         encoder.setDelay(50);  // frame delay in ms
         encoder.setQuality(10); // image quality. 10 is default.
-
         return Promise.each(angles, function(angle) {
           var rad = angle/180*Math.PI
           var cos = Math.cos(rad)
           var sin = Math.sin(rad)
           scene.camera.set(cos, 0, sin)
-          var context = scene.render()
-          return Promise.delay(50).then(function() {
+          return scene.renderToStream().then(function(context) {
             encoder.addFrame(context)
           })
         }).then(function() {
