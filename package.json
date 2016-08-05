@@ -10,9 +10,6 @@
     "three": "^0.79.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-mocha-test": "^0.12.7",
     "should": "^9.0.2",
     "mocha": "^2.5.3"
   },
