@@ -28,17 +28,6 @@ It will be reused in my web interface project "beads3d".
 * [x] render camera animation as GIF file
 * [ ] use Javascript `standard` package
 
-## Basic algorithm
-* load a mesh object with textures
-* arrange, rotate and scale the object, such that one unit of length corresponds to one voxel
-  * one unit cube is one voxel
-* split the object into triangles, where each of the three points has spatial and texture coordinates
-  * the spatial coordinates are already transformed by position, rotation and scale of the object
-* for each triangle ABC
-  * **visit all voxels which intersect with ABC**
-  * collect the found color information in a voxel grid
-* output the voxel grid layer-for-layer into a PNG file
-
 ## License
 
 [MIT](LICENSE.md)

@@ -25,7 +25,7 @@ describe('Triangle', function() {
       material
     )
     const voxel = new Vector3(100, 100, 100)
-    const color = triangle.getColorAtVoxel(voxel)
-    should(color).not.be.ok()
+    const vertices = triangle.getVoxelVertices(voxel)
+    vertices.length.should.be.equal(0)
   })
 })
