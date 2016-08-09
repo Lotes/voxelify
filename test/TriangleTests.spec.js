@@ -19,9 +19,9 @@ describe('Triangle', function() {
 
   it('should not intersect voxel', function() {
     const triangle = new Triangle(
-      new Vertex(0, 0, 0, 0, 0),
-      new Vertex(1, 0, 0, 1, 0),
-      new Vertex(0, 1, 0, 0, 1),
+      new Vertex([0, 0, 0], [0, 0]),
+      new Vertex([1, 0, 0], [1, 0]),
+      new Vertex([0, 1, 0], [0, 1]),
       material
     )
     const voxel = new Vector3(100, 100, 100)

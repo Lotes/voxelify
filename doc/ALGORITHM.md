@@ -81,3 +81,5 @@ can be written as matrix equation:
 | A1.y A2.y R1.y | * |  t | = | A.y - S.y |
 | A1.z A2.z R1.z |   | -u |   | A.z - S.z |
 ```
+
+to be continued...
