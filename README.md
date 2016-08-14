@@ -18,7 +18,7 @@ It will be reused in my web interface project "beads3d".
 * [x] read OBJ mesh with textures
 * [x] render scene
 * [x] visit triangles
-* [ ] voxelify triangle
+* [x] voxelify triangle
 ...
 * [ ] voxel preview to PNG/GIF
 * [ ] documentation (code + usage)
