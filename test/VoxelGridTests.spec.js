@@ -19,7 +19,7 @@ describe('VoxelGrid', function() {
       })
   })
 
-  it('should split face leafing an empty voxel', function() {
+  it('should split face leaving one empty voxel', function() {
     /*
          | X
          |XX
