@@ -14,6 +14,14 @@ It will be reused in my web interface project "beads3d".
 ... creates a 20 x 400 PNG image (20 layers with 20 x 20 pixels)
 ```
 
+## Example
+
+| Original          | Voxels (size = 50)  |
+| ----------------- | ------------------- |
+| ![](doc/mesh.gif) | ![](doc/voxels.gif) |
+
+
+
 ## TODO
 * [x] read OBJ mesh with textures
 * [x] render scene
