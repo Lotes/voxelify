@@ -23,16 +23,17 @@ describe('Voxelifier', function() {
     const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.png')
     const voxelifier = new Voxelifier({
       object: object,
-      size: 20
+      size: 50
     })
     const colorGrid = voxelifier.compute()
     return colorGrid.save(fileName)
   })
 
   it('should render voxelified mesh', function() {
+    this.timeout(20000)
     const voxelifier = new Voxelifier({
       object: object,
-      size: 20
+      size: 50
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()
@@ -52,7 +53,7 @@ describe('Voxelifier', function() {
     const HEIGHT = 400
     const voxelifier = new Voxelifier({
       object: object,
-      size: 20
+      size: 50
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()
