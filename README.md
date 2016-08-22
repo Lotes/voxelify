@@ -20,22 +20,6 @@ It will be reused in my web interface project "beads3d".
 | ----------------- | ------------------- |
 | ![](doc/mesh.gif) | ![](doc/voxels.gif) |
 
-
-
-## TODO
-* [x] read OBJ mesh with textures
-* [x] render scene
-* [x] visit triangles
-* [x] voxelify triangle
-...
-* [ ] voxel preview to PNG/GIF
-* [ ] documentation (code + usage)
-
-## Nice-to-have
-* [ ] import THREE.js client libraries [via `vm` package](http://stackoverflow.com/questions/5171213/load-vanilla-javascript-libraries-into-node-js)
-* [x] render camera animation as GIF file
-* [ ] use Javascript `standard` package
-
 ## License
 
 [MIT](LICENSE.md)
