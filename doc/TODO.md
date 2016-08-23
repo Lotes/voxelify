@@ -24,7 +24,7 @@
   * [ ] weighted rasterization
   * [ ] sieve concept for splitting faces one-by-one
   * [ ] palettes (Hama and other suppliers)
-  * [ ] breadboards (Hama and other suppliers)
+  * [ ] boards (Hama and other suppliers)
   * [ ] pipes and filters (use cases?)
   * [ ] preview rendering
   * [ ] import THREE.js client libraries [via `vm` package](http://stackoverflow.com/questions/5171213/load-vanilla-javascript-libraries-into-node-js)
@@ -46,7 +46,7 @@
     * [ ] license
   * [ ] a model
     * [ ] one layer
-      * [ ] breadboard
+      * [ ] board
       * [ ] indices/dimensions
       * [ ] mapping indices to color
     * [ ] layer-by-layer
@@ -57,7 +57,7 @@
   * [ ] a palette
     * [ ] color
     * [ ] name/id
-  * [ ] a breadboard
+  * [ ] a board
     * [ ] bead position and rotation for index
     * [ ] mapping from PNG data
     * [ ] valid indices

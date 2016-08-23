@@ -14,7 +14,8 @@
     "mocha": "^2.5.3"
   },
   "scripts": {
-    "test": "mocha --require should --reporter spec"
+    "test": "mocha --require should --reporter spec",
+    "uml": "node doc/uml/generate.js doc/uml"
   },
   "repository": {
     "type": "git",

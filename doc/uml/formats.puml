@@ -1,0 +1,81 @@
+class DataFormat {
+  author: String
+  license: String
+  name: String
+  version: String
+  description: String
+  homepage: String
+}
+
+class Palette #ff8080 {
+  colors: NamedColor[]
+}
+
+class NamedColor {
+  name: String
+  color: Color
+}
+
+Palette o-- NamedColor
+
+class Bead {
+  position: Vector2
+  index: int
+}
+
+class Board #ff8080 {
+  name: String
+  beads: Bead[]
+  savePlacement(fileName: String, Part: Placement)
+  loadPlacement(fileName: String): Placement
+}
+
+class Placement {
+  board: Board
+  getColoredBeadIndices(): Observable<int>
+  getColor(index: int): Color
+  setColor(index: int, color: Color)
+}
+
+Board o-- Bead
+Placement o-- Board
+
+class Part {
+  transform: Matrix4Det1
+}
+
+class BoardPart {
+  placement: Placement
+}
+
+class Group {
+  children: Part[]
+}
+
+class Usage {
+  symbol: Symbol
+}
+
+class Symbol {
+  name: String
+  part: Part
+}
+
+class Model #ff8080 {
+  symbols: Symbol[]
+  root: Part
+}
+
+Group --|> Part
+Group o-- Part
+BoardPart --|> Part
+BoardPart o-- Placement
+Symbol --o Usage
+Symbol o-- Part
+Usage --|> Part
+Model o-- Symbol
+Model o-- Part
+
+DataFormat <|-- Palette
+DataFormat <|-- Model
+DataFormat <|-- Board

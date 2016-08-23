@@ -1,0 +1,93 @@
+package THREE {
+  class Vector2 {
+    x: Number
+    y: Number
+    Vector3 lerp(Vector3, Number)
+  }
+  class Vector3 {
+    x: Number
+    y: Number
+    z: Number
+    Vector3 lerp(Vector3, Number)
+  }
+  class Box3 {
+    min, max: Vector3
+  }
+  class Material {
+    map: Image
+  }
+  class Mesh {
+    geometry: Geometry
+    material: Material
+  }
+  Mesh o-- Material
+  Mesh o-- Geometry
+  Vector3 --o Box3
+}
+
+package RxJS {
+  class Observable {
+
+  }
+}
+
+package CommandLine {
+  class Vertex {
+    position: Vector3
+    uv: Vector2
+  }
+
+  class TriangleRasterizer {
+    Observable<WeightedColor> getPixels(Triangle)
+  }
+
+  class Face {
+    a: Vertex
+    b: Vertex
+    c: Vertex
+    material: Material
+  }
+
+  class FaceExtensions {
+    Observable<FaceExtensions> split(Plane)
+    WeightedColor getColor()
+  }
+
+  class UnitSieve {
+    constructor(bbox: Box3)
+    Observable<Face> sieve(face: Face)
+  }
+
+  class MeshExtensions {
+    Observable<Face> getFaces()
+    Box3 getBoundingBox()
+  }
+
+  class MaterialExtensions {
+    ImageData getImageData()
+  }
+
+  class Color {
+    r(), g(), b(): int
+  }
+
+    weight: int
+    class WeightedColor {
+    r, g, b: int
+    weight(): int
+    add(WeightedColor)
+  }
+
+  MaterialExtensions --|> Material : "extends"
+  MeshExtensions --|> Mesh : "extends"
+  Face <.. MeshExtensions : "produces"
+  Face o-- Vertex
+  Face o-- Material
+  Vertex o-- Vector2
+  Vertex o-- Vector3
+  FaceExtensions --|> Face
+  Face <.. UnitSieve : "consumes/produces"
+  Face ..> WeightedColor : "produces"
+  FaceExtensions ..> TriangleRasterizer : "uses"
+  WeightedColor --|> Color
+}
