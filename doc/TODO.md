@@ -19,6 +19,7 @@
   * [x] voxelify triangle
   * [x] voxel preview to PNG/GIF
 * [ ] Command line
+  * [ ] use web-gl, not canvas
   * [ ] progress via error stream (like git)
   * [ ] autofill of hollow shapes
   * [ ] weighted rasterization
@@ -36,32 +37,32 @@
   * [ ] preview
     * [ ] single picture
     * [ ] animation (GIF/video)
-* [ ] File format
-  * [ ] Metadata
-    * [ ] name and description
-    * [ ] version
-    * [ ] tags
-    * [ ] URL/Links/Email
-    * [ ] authors/contributors
-    * [ ] license
-  * [ ] a model
-    * [ ] one layer
-      * [ ] board
-      * [ ] indices/dimensions
-      * [ ] mapping indices to color
-    * [ ] layer-by-layer
-    * [ ] pieces
-      * [ ] groups
-      * [ ] symbols
-      * [ ] position + rotation
-  * [ ] a palette
-    * [ ] color
-    * [ ] name/id
-  * [ ] a board
-    * [ ] bead position and rotation for index
-    * [ ] mapping from PNG data
-    * [ ] valid indices
-    * [ ] dimension of indices
+* [x] File format
+  * [x] Metadata
+    * [x] name and description
+    * [x] version
+    * [x] tags
+    * [x] URL/Links/Email
+    * [x] authors/contributors
+    * [x] license
+  * [x] a model
+    * [x] one layer
+      * [x] board
+      * [x] indices/dimensions
+      * [x] mapping indices to color
+    * [x] layer-by-layer
+    * [x] pieces
+      * [x] groups
+      * [x] symbols
+      * [x] position + rotation
+  * [x] a palette
+    * [x] color
+    * [x] name/id
+  * [ ] ~~a board~~
+    * [ ] ~~bead position and rotation for index~~
+    * [ ] ~~mapping from PNG data~~
+    * [ ] ~~valid indices~~
+    * [ ] ~~dimension of indices~~
 
 ## beads3d
 * [ ] Editor library
