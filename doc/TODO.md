@@ -25,7 +25,7 @@
   * [ ] weighted rasterization
   * [ ] sieve concept for splitting faces one-by-one
   * [ ] palettes (Hama and other suppliers)
-  * [ ] boards (Hama and other suppliers)
+  * [ ] ~~boards (Hama and other suppliers)~~
   * [ ] pipes and filters (use cases?)
   * [ ] preview rendering
   * [ ] import THREE.js client libraries [via `vm` package](http://stackoverflow.com/questions/5171213/load-vanilla-javascript-libraries-into-node-js)
@@ -33,7 +33,7 @@
     * [ ] own format
     * [ ] PDF
     * [ ] construction manual
-    * OBJ file
+    * [ ] OBJ/STL file
   * [ ] preview
     * [ ] single picture
     * [ ] animation (GIF/video)

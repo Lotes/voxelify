@@ -10,11 +10,13 @@
   "version": "1.0.0",
   "author": "Me",
   "homepage": "http://example.com",
-  "license": "CC1.0"
+  "license": "CC1.0",
+  "main": "palette.json"
 }
 ```
 
 Fields:
+* `main`: path to JSON file
 * `name`: String, required, name of the palette/model
 * `version`: semantic version, required, version of palette NOT model!
 * `type`: (palette|model), required
