@@ -2,7 +2,7 @@
 
 ## Generate from 3D model
 
-* Status: idea
+* Status: analysis (see [flow chart](uml/generate-flow.puml.png))
 * Priority: core feature
 
 ```
@@ -26,12 +26,12 @@ Mode arguments:
 * `--generate`, required, the current tool mode
 
 Input arguments:
-* `--input-file model.obj`, required, the input model path
+* `--input-file <model.obj>`, required, the input model path
   * currently only OBJ file format supported!
 * `--size <int>`, required, the maximal width/depth/height of the model in units
-* `--yaw <float>`, optional, euler rotation in degrees for the model
-* `--pitch <float>`, optional, euler rotation in degrees for the model
-* `--roll <float>`, optional, euler rotation in degrees for the model
+* `--yaw <float>`, optional, euler rotation in degrees for the model, defaults to 0
+* `--pitch <float>`, optional, euler rotation in degrees for the model, defaults to 0
+* `--roll <float>`, optional, euler rotation in degrees for the model, defaults to 0
 * `--palette <palette.json>`, optional, path to palette. Only colors of this palette will be used.
 
 Output arguments:
