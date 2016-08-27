@@ -19,7 +19,7 @@
   * [x] voxelify triangle
   * [x] voxel preview to PNG/GIF
 * [ ] Command line
-  * [ ] use web-gl, not canvas
+  * [ ] use [web-gl](https://gist.github.com/bsergean/6780d7cc0cabb1b4d6c8), not canvas
   * [ ] progress via error stream (like git)
   * [ ] autofill of hollow shapes
   * [ ] weighted rasterization
@@ -28,7 +28,7 @@
   * [ ] ~~boards (Hama and other suppliers)~~
   * [ ] pipes and filters (use cases?)
   * [ ] preview rendering
-  * [ ] import THREE.js client libraries [via `vm` package](http://stackoverflow.com/questions/5171213/load-vanilla-javascript-libraries-into-node-js)
+  * [x] import THREE.js client libraries [via `vm` package](http://stackoverflow.com/questions/5171213/load-vanilla-javascript-libraries-into-node-js)
   * [ ] export
     * [ ] own format
     * [ ] PDF
