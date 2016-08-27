@@ -10,8 +10,8 @@
     "three": "^0.79.0"
   },
   "devDependencies": {
-    "should": "^9.0.2",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "should": "^9.0.2"
   },
   "scripts": {
     "test": "mocha --require should --reporter spec",

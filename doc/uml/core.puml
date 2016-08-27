@@ -1,0 +1,70 @@
+hide empty fields
+hide empty methods
+
+package Input {
+  class Vertex {
+    position: THREE.Vector3
+    uv: THREE.Vector2
+    lerp(Vertex, Number): Vertex
+  }
+
+  class Face {
+    a: Vertex
+    b: Vertex
+    c: Vertex
+    material: Material
+  }
+
+  class MeshExtensions {
+    Observable<Face> getFaces()
+    THREE.Box3 getBoundingBox()
+  }
+}
+
+package Transform {
+  class MaterialExtensions {
+    ImageData getImageData()
+  }
+
+  class FaceExtensions {
+    Observable<Face> split(Plane)
+    WeightedColor getColor()
+  }
+
+  class TriangleRasterizer {
+    Observable<WeightedColor> getPixels(Triangle)
+  }
+
+  class UnitSieve {
+    constructor(bbox: THREE.Box3)
+    Observable<Tuple<THREE.Vector3, Face>> sieve(face: Face)
+  }
+}
+
+package Output {
+  class ColorGrid {
+    get(x: int, y: int, z: int): WeightedColor
+    fill(x: int, y: int, z: int, color: Color)
+  }
+
+  class Color {
+    r(), g(), b(): int
+  }
+
+  class WeightedColor {
+    weight: int
+    r, g, b: int
+    weight(): int
+    add(WeightedColor)
+  }
+}
+
+FaceExtensions ..> MaterialExtensions: uses
+FaceExtensions --|> Face
+Face <.. UnitSieve : "consumes/produces"
+FaceExtensions ..> WeightedColor : "produces"
+FaceExtensions ..> TriangleRasterizer : "uses"
+WeightedColor -up-|> Color
+MeshExtensions .down.> Face : "produces"
+Face o-- Vertex
+WeightedColor --o ColorGrid

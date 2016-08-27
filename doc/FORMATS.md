@@ -1,5 +1,7 @@
 # Formats
 
+![format classes](uml/formats.puml.png)
+
 ## Model
 
 ### 2D model
