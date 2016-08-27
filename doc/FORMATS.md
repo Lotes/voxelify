@@ -1,30 +1,5 @@
 # Formats
 
-## Metadata
-
-```json
-{
-  "name": "powerpuff",
-  "type": "model",
-  "description": "I am a grid!",
-  "version": "1.0.0",
-  "author": "Me",
-  "homepage": "http://example.com",
-  "license": "CC1.0",
-  "main": "palette.json"
-}
-```
-
-Fields:
-* `main`: path to JSON file
-* `name`: String, required, name of the palette/model
-* `version`: semantic version, required, version of palette NOT model!
-* `type`: (palette|model), required
-* `license`: String, required, license of palette/model
-* `description`: String, optional, description of the palette/model
-* `author`: String, optional, who made this palette/model?
-* `homepage`: URL, optional
-
 ## Model
 
 ### 2D model
@@ -98,9 +73,11 @@ Fields:
         "z": 10
       },
       "rotation": {
-        "yaw": 90,
-        "pitch": 0,
-        "roll": 0
+        "type": "euler",
+        "order": "xyz",
+        "x": 90,
+        "y": 0,
+        "z": 0
       }
     }
   },
@@ -127,8 +104,15 @@ Model
 *Part* (abstract class)
 * `type`: (`use`|`data`|`group`)
 * `translation`: `Vector3`, defaults to (0, 0, 0)
-* `rotation`: `Euler`, defaults to (0, 0, 0)
+* `rotation`: `Rotation`, defaults to `Quaternion(1, 0, 0, 0)`
 * rotation will be applied at the translated location
+
+Data (extends *Part*)
+* `source`: rectangle for addressing the part of the map image that shall be placed here
+  * `x`: int
+  * `y`: int
+  * `width`: int
+  * `height`: int
 
 Use (extends *Part*)
 * `reference`: String, a valid definition name
@@ -141,10 +125,22 @@ Vector3
 * `y`: Number
 * `z`: Number
 
-Euler
-* `yaw`: Number
-* `pitch`: Number
-* `roll`: Number
+*Rotation*
+* `type` = ('euler'|`quaternion`)
+
+Euler (extends `Rotation`)
+* `type` = "euler"
+* `order`: permutation string of `x`, `y`, `z`
+* `x`: Number
+* `y`: Number
+* `z`: Number
+
+Quaternion (extends `Rotation`)
+* `type` = "quaternion"
+* `w`: Number
+* `x`: Number
+* `y`: Number
+* `z`: Number
 
 ## Palettes
 ```json
@@ -162,3 +158,30 @@ Euler
 It is a map of identifiers to color values or an object with following fields:
 * `name`: String, a caption
 * `color`: String, a hex color
+
+## Metadata
+
+*I think such data is not needed. You need it online for a repository.*
+
+```json
+{
+  "name": "powerpuff",
+  "type": "model",
+  "description": "I am a grid!",
+  "version": "1.0.0",
+  "author": "Me",
+  "homepage": "http://example.com",
+  "license": "CC1.0",
+  "main": "palette.json"
+}
+```
+
+Fields:
+* `main`: path to JSON file
+* `name`: String, required, name of the palette/model
+* `version`: semantic version, required, version of palette NOT model!
+* `type`: (palette|model), required
+* `license`: String, required, license of palette/model
+* `description`: String, optional, description of the palette/model
+* `author`: String, optional, who made this palette/model?
+* `homepage`: URL, optional

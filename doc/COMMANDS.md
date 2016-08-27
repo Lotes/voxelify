@@ -2,7 +2,7 @@
 
 ## Generate from 3D model
 
-* Status: analysis (see [flow chart](uml/generate-flow.puml.png))
+* Status: analysis
 * Priority: core feature
 
 ```
@@ -17,9 +17,11 @@
     [--palette palette.json]
     [--preview-image preview.png]
     [--preview-animation preview.gif]
+    [--preview-width 600]
+    [--preview-height 400]
     [--force]
 
-creating model.json + map.png
+creating model.json + model.map.png
 ```
 
 Mode arguments:
@@ -36,11 +38,29 @@ Input arguments:
 
 Output arguments:
 * `--force`, optional, will overwrite existing files
+* `--preview-width <int>`, required `--preview-image` and `--preview-animation`, the actual output width
+* `--preview-height <int>`, required `--preview-image` and `--preview-animation`, the actual output height
 * at least one must be set:
   * aborts if files already exist, see `--force`
   * `--output-file <model.json>`, optional, the target file path for voxelified model
+    * a `model.map.png` with packed color information will also be generated
   * `--preview-image <preview.png>`, optional, the target path for saving a preview image
   * `--preview-animation <preview.gif>`, optional, the target path for saving a preview animation
+
+### Flow
+
+Actions:
+* read arguments
+* validate arguments
+* load model
+* rotate model
+* [voxelify model](ALGORITHM.md)
+* apply palette
+* render scene to PNG file
+* render scene to GIF file
+* save to voxelify format
+
+![flow chart](uml/generate-flow.puml.png)
 
 ## Initialize palette
 
