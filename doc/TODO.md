@@ -12,14 +12,15 @@
   * [ ] API
 
 ## Features
-* [ ] Prototype
+* [x] Prototype
   * [x] read OBJ mesh with textures
   * [x] render scene
   * [x] visit triangles
   * [x] voxelify triangle
   * [x] voxel preview to PNG/GIF
 * [ ] Command line
-  * [ ] use [web-gl](https://gist.github.com/bsergean/6780d7cc0cabb1b4d6c8), not canvas
+  * [ ] ~~use [web-gl](https://gist.github.com/bsergean/6780d7cc0cabb1b4d6c8) not canvas~~
+    * currently does not work, try it again later
   * [ ] progress via error stream (like git)
   * [ ] autofill of hollow shapes
   * [ ] weighted rasterization

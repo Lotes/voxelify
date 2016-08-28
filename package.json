@@ -9,6 +9,7 @@
     "canvas": "^1.4.0",
     "get-installed-path": "^1.0.2",
     "gifencoder": "^1.0.6",
+    "rx": "^4.1.0",
     "three": "^0.79.0"
   },
   "devDependencies": {

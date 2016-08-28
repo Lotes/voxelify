@@ -3,7 +3,7 @@ const THREE = nodeThree.THREE
 const path = require('path')
 const Promise = require('bluebird')
 const fs = require('fs')
-const meshVisit = require('../lib/meshVisit')
+const MeshExtensions = require('../lib/MeshExtensions')
 
 describe('Mesh visitor', function() {
   const url = path.join(__dirname, 'data/cube/cube.obj')
@@ -18,9 +18,7 @@ describe('Mesh visitor', function() {
 
   it('should visit all 12 triangles of the cube', function() {
     var count = 0
-    meshVisit(mesh, function(triangle) {
-      count++
-    })
+    MeshExtensions.getFaces(mesh).subscribe(() => count++)
     count.should.be.equal(12)
   })
 })

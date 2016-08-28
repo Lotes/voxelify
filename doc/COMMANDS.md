@@ -20,6 +20,7 @@
     [--preview-width 600]
     [--preview-height 400]
     [--force]
+    [--progress]
 
 creating model.json + model.map.png
 ```
@@ -37,6 +38,7 @@ Input arguments:
 * `--palette <palette.json>`, optional, path to palette. Only colors of this palette will be used.
 
 Output arguments:
+* `--progress`, optional, show progress via standard error stream `stderr`
 * `--force`, optional, will overwrite existing files
 * `--preview-width <int>`, required `--preview-image` and `--preview-animation`, the actual output width
 * `--preview-height <int>`, required `--preview-image` and `--preview-animation`, the actual output height
