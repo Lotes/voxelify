@@ -1,7 +1,4 @@
-const nodeThree = require('../lib/node-three/index')
-const Face = require('../lib/Face')
 const TriangleExtensions = require('../lib/TriangleExtensions')
-const path = require('path')
 const should = require('should')
 
 describe('TriangleExtensions', function() {

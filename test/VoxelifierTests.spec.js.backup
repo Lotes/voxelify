@@ -20,6 +20,7 @@ describe('Voxelifier', function() {
   })
 
   it('should render all slices of given mesh', function() {
+    this.timeout(40000)
     const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.png')
     const voxelifier = new Voxelifier({
       object: object,
@@ -30,7 +31,7 @@ describe('Voxelifier', function() {
   })
 
   it('should render voxelified mesh', function() {
-    this.timeout(20000)
+    this.timeout(40000)
     const voxelifier = new Voxelifier({
       object: object,
       size: 50
@@ -48,7 +49,7 @@ describe('Voxelifier', function() {
   })
 
   it('should render an animation of a voxelified mesh', function() {
-    this.timeout(20000)
+    this.timeout(40000)
     const WIDTH = 600
     const HEIGHT = 400
     const voxelifier = new Voxelifier({
