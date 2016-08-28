@@ -24,8 +24,8 @@
   * [ ] progress via error stream (like git)
   * [ ] autofill of hollow shapes
   * [ ] weighted rasterization
-  * [ ] use reactive extensions
-  * [ ] sieve concept for splitting faces one-by-one
+  * [x] use reactive extensions
+  * [x] sieve concept for splitting faces one-by-one
   * [ ] palettes (Hama and other suppliers)
   * [ ] ~~boards (Hama and other suppliers)~~
   * [ ] pipes and filters (use cases?)
