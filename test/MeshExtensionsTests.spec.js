@@ -5,7 +5,7 @@ const Promise = require('bluebird')
 const fs = require('fs')
 const MeshExtensions = require('../lib/MeshExtensions')
 
-describe('Mesh visitor', function() {
+describe('MeshExtensions', function() {
   const url = path.join(__dirname, 'data/cube/cube.obj')
   var mesh
 

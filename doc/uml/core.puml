@@ -16,23 +16,23 @@ package Input {
   }
 
   class MeshExtensions {
-    Observable<Face> getFaces()
-    THREE.Box3 getBoundingBox()
+    Observable<Face> getFaces(Mesh)
+    THREE.Box3 getBoundingBox(Mesh)
   }
 }
 
 package Transform {
   class MaterialExtensions {
-    ImageData getImageData()
+    ImageData getImageData(Material)
   }
 
   class FaceExtensions {
-    Observable<Face> split(Plane)
-    WeightedColor getColor()
+    Observable<Face> split(Face, Plane)
+    WeightedColor getColor(Face)
   }
 
-  class TriangleRasterizer {
-    Observable<WeightedColor> getPixels(Triangle)
+  class TriangleExtensions {
+    Observable<WeightedColor> rasterize(Triangle)
   }
 
   class UnitSieve {
@@ -63,7 +63,7 @@ FaceExtensions ..> MaterialExtensions: uses
 FaceExtensions --|> Face
 Face <.. UnitSieve : "consumes/produces"
 FaceExtensions ..> WeightedColor : "produces"
-FaceExtensions ..> TriangleRasterizer : "uses"
+FaceExtensions ..> TriangleExtensions : "uses"
 WeightedColor -up-|> Color
 MeshExtensions .down.> Face : "produces"
 Face o-- Vertex

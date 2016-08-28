@@ -1,16 +1,13 @@
 const nodeThree = require('../lib/node-three/index')
 const Face = require('../lib/Face')
-const TriangleRasterizer = require('../lib/TriangleRasterizer')
+const TriangleExtensions = require('../lib/TriangleExtensions')
 const path = require('path')
 const should = require('should')
 
-describe('TriangleRasterizer', function() {
+describe('TriangleExtensions', function() {
   const shouldHaveNPixels = function(triangle, n) {
-    const rasterizer = new TriangleRasterizer(triangle)
     var count = 0
-    rasterizer.rasterize(function(x, y) {
-      count++
-    })
+    TriangleExtensions.rasterize(triangle).subscribe(point => count++)
     count.should.be.equal(n)
   }
 

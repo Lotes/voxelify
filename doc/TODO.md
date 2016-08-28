@@ -6,7 +6,7 @@
   * [ ] TDD with Mocha/Should
   * [ ] test coverage
   * [ ] JSLint/Hint
-* [ ] Documentation
+* Documentation
   * [ ] algorithm (pictures++)
   * [ ] usage
   * [ ] API
@@ -24,6 +24,7 @@
   * [ ] progress via error stream (like git)
   * [ ] autofill of hollow shapes
   * [ ] weighted rasterization
+  * [ ] use reactive extensions
   * [ ] sieve concept for splitting faces one-by-one
   * [ ] palettes (Hama and other suppliers)
   * [ ] ~~boards (Hama and other suppliers)~~
