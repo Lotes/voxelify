@@ -1,5 +1,6 @@
-const nodeThree = require('../lib/node-three/index')
-const THREE = nodeThree.THREE
+const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
+const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
+const THREE = ThreeRenderExtensions.THREE
 const path = require('path')
 const Promise = require('bluebird')
 const fs = require('fs')
@@ -11,7 +12,7 @@ describe('THREE basics', function() {
 
   it('should load OBJ file', function() {
     this.timeout(1000)
-    return nodeThree.loadOBJ(url)
+    return ThreeLoaderExtensions.loadOBJ(url)
       .then(function(object) {
         object.should.be.ok()
       })
@@ -19,8 +20,8 @@ describe('THREE basics', function() {
 
   it('should transform OBJ', function() {
     this.timeout(1000)
-    return nodeThree.loadOBJ(url)
-      .then(nodeThree.normalizeSize)
+    return ThreeLoaderExtensions.loadOBJ(url)
+      .then(ThreeRenderExtensions.normalizeSize)
       .then(function(mesh) {
         const epsilon = 0.00001
         var box = new THREE.Box3().setFromObject(mesh)
@@ -33,10 +34,10 @@ describe('THREE basics', function() {
 
   it('should render scene', function() {
     this.timeout(10000)
-    return nodeThree.loadOBJ(url)
-      .then(nodeThree.normalizeSize)
+    return ThreeLoaderExtensions.loadOBJ(url)
+      .then(ThreeRenderExtensions.normalizeSize)
       .then(function(mesh) {
-        return nodeThree.captureByCamera(mesh, 600, 400)
+        return ThreeRenderExtensions.captureByCamera(mesh, 600, 400)
       })
       .then(function(scene) {
         var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'render.png'))
@@ -48,10 +49,10 @@ describe('THREE basics', function() {
     this.timeout(20000)
     const WIDTH = 600
     const HEIGHT = 400
-    return nodeThree.loadOBJ(url)
-      .then(nodeThree.normalizeSize)
+    return ThreeLoaderExtensions.loadOBJ(url)
+      .then(ThreeRenderExtensions.normalizeSize)
       .then(function(mesh) {
-        return nodeThree.captureByCamera(mesh, WIDTH, HEIGHT)
+        return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
       })
       .then(function(scene) {
         var angles = []

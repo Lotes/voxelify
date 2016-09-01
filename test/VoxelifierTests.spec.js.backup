@@ -1,6 +1,7 @@
 const Voxelifier = require('../lib/Voxelifier')
-const nodeThree = require('../lib/node-three/index')
-const THREE = nodeThree.THREE
+const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
+const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
+const THREE = ThreeLoaderExtensions.THREE
 const path = require('path')
 const fs = require('fs')
 const GIFEncoder = require('gifencoder')
@@ -13,7 +14,7 @@ describe('Voxelifier', function() {
   var object
 
   before(function() {
-    return nodeThree.loadOBJ(url)
+    return ThreeLoaderExtensions.loadOBJ(url)
       .then(function(obj) {
         object = obj
       })
@@ -38,9 +39,9 @@ describe('Voxelifier', function() {
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()
-    return nodeThree.normalizeSize(mesh)
+    return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function(normalizedMesh) {
-        return nodeThree.captureByCamera(normalizedMesh, 600, 400)
+        return ThreeRenderExtensions.captureByCamera(normalizedMesh, 600, 400)
       })
       .then(function(scene) {
         var out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'voxel_mesh.png'))
@@ -58,9 +59,9 @@ describe('Voxelifier', function() {
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()
-    return nodeThree.normalizeSize(mesh)
+    return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function(mesh) {
-        return nodeThree.captureByCamera(mesh, WIDTH, HEIGHT)
+        return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
       })
       .then(function(scene) {
         var angles = []

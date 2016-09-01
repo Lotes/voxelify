@@ -1,12 +1,12 @@
-const nodeThree = require('../lib/node-three/index')
-const THREE = nodeThree.THREE
+const ThreeExtensions = require('../lib/converters/ThreeExtensions')
+const THREE = ThreeExtensions.THREE
 const Box3 = THREE.Box3
 const MeshBasicMaterial = THREE.MeshBasicMaterial
 const Vector3 = THREE.Vector3
-const UnitSieve = require('../lib/UnitSieve')
-const Face = require('../lib/Face')
-const FaceExtensions = require('../lib/FaceExtensions')
-const Vertex = require('../lib/Vertex')
+const UnitSieve = require('../lib/converters/UnitSieve')
+const Face = require('../lib/converters/Face')
+const FaceExtensions = require('../lib/converters/FaceExtensions')
+const Vertex = require('../lib/converters/Vertex')
 const path = require('path')
 
 describe('UnitSieve', function() {
@@ -14,7 +14,7 @@ describe('UnitSieve', function() {
   var material
 
   before(function() {
-    return nodeThree.loadTexture(url)
+    return ThreeExtensions.loadTexture(url)
       .then(function(texture) {
         material = texture
       })

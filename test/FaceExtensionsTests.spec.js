@@ -1,16 +1,16 @@
-const nodeThree = require('../lib/node-three/index')
-const THREE = nodeThree.THREE
+const ThreeExtensions = require('../lib/converters/ThreeExtensions')
+const THREE = ThreeExtensions.THREE
 const path = require('path')
-const Face = require('../lib/Face')
-const FaceExtensions = require('../lib/FaceExtensions')
-const Vertex = require('../lib/Vertex')
+const Face = require('../lib/converters/Face')
+const FaceExtensions = require('../lib/converters/FaceExtensions')
+const Vertex = require('../lib/converters/Vertex')
 
 describe('FaceExtensions', function() {
   const url = path.join(__dirname, 'data/cube/cube.png')
   var material
 
   before(function() {
-    return nodeThree.loadTexture(url)
+    return ThreeExtensions.loadTexture(url)
       .then(function(texture) {
         material = texture
       })

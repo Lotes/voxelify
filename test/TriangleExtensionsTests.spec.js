@@ -1,4 +1,4 @@
-const TriangleExtensions = require('../lib/TriangleExtensions')
+const TriangleExtensions = require('../lib/converters/TriangleExtensions')
 const should = require('should')
 
 describe('TriangleExtensions', function() {
