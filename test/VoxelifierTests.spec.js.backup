@@ -1,4 +1,4 @@
-const Voxelifier = require('../lib/Voxelifier')
+const Voxelifier = require('../lib/converters/Voxelifier')
 const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const THREE = ThreeLoaderExtensions.THREE
