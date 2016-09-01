@@ -33,9 +33,9 @@ describe('UnitSieve', function() {
     const b = new Vertex([2, 0, 0], [1, 0])
     const c = new Vertex([2, 2, 0], [1, 1])
     const face = new Face(a, b, c, material)
-    sieve.sieveWith(face, FaceExtensions.split).subscribe(item => {
+    for(var item of sieve.sieveWith(face, FaceExtensions.split)) {
       if(item.box.min.x === 0 && item.box.min.y === 1)
         item.item.should.be.empty()
-    })
+    }
   })
 })

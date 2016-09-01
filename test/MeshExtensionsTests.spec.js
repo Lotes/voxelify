@@ -17,8 +17,6 @@ describe('MeshExtensions', function() {
   })
 
   it('should visit all 12 triangles of the cube', function() {
-    var count = 0
-    MeshExtensions.getFaces(mesh).subscribe(() => count++)
-    count.should.be.equal(12)
+    MeshExtensions.getFaces(mesh).length.should.be.equal(12)
   })
 })

@@ -4,7 +4,8 @@ const should = require('should')
 describe('TriangleExtensions', function() {
   const shouldHaveNPixels = function(triangle, n) {
     var count = 0
-    TriangleExtensions.rasterize(triangle).subscribe(point => count++)
+    for(var point of TriangleExtensions.rasterize(triangle))
+      count++
     count.should.be.equal(n)
   }
 
