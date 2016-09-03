@@ -8,15 +8,14 @@ package Input {
     lerp(Vertex, Number): Vertex
   }
 
-  class Face {
-    a: Vertex
-    b: Vertex
-    c: Vertex
+  class Polygon {
+    normal: THREE.Vector3
+    points: Vertex[]
     material: Material
   }
 
   class MeshExtensions {
-    Observable<Face> getFaces(Mesh)
+    Polygon[] getFaces(Mesh)
     THREE.Box3 getBoundingBox(Mesh)
   }
 }
@@ -26,9 +25,9 @@ package Transform {
     ImageData getImageData(Material)
   }
 
-  class FaceExtensions {
-    Observable<Face> split(Face, Plane)
-    WeightedColor getColor(Face)
+  class PolygonExtensions {
+    Polygon[] split(Polygon, Plane)
+    WeightedColor getColor(Polygon)
   }
 
   class TriangleExtensions {
@@ -37,7 +36,7 @@ package Transform {
 
   class UnitSieve {
     constructor(bbox: THREE.Box3)
-    Observable<Tuple<THREE.Vector3, Face>> sieve(face: Face)
+    Tuple<THREE.Vector3, Polygon>[] sieve(polygon: Polygon)
   }
 }
 
@@ -59,12 +58,12 @@ package Output {
   }
 }
 
-FaceExtensions ..> MaterialExtensions: uses
-FaceExtensions --|> Face
-Face <.. UnitSieve : "consumes/produces"
-FaceExtensions ..> WeightedColor : "produces"
-FaceExtensions ..> TriangleExtensions : "uses"
+PolygonExtensions ..> MaterialExtensions: uses
+PolygonExtensions --|> Polygon
+Polygon <.. UnitSieve : "consumes/produces"
+PolygonExtensions ..> WeightedColor : "produces"
+PolygonExtensions ..> TriangleExtensions : "uses"
 WeightedColor -up-|> Color
-MeshExtensions .down.> Face : "produces"
-Face o-- Vertex
+MeshExtensions .down.> Polygon : "produces"
+Polygon o-- Vertex
 WeightedColor --o ColorGrid

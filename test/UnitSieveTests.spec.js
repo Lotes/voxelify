@@ -5,8 +5,8 @@ const THREE = ThreeExtensions.THREE
 const Box3 = THREE.Box3
 const Vector3 = THREE.Vector3
 const UnitSieve = require('../lib/converters/UnitSieve')
-const Face = require('../lib/converters/Face')
-const FaceExtensions = require('../lib/converters/FaceExtensions')
+const Polygon = require('../lib/converters/Polygon')
+const PolygonExtensions = require('../lib/converters/PolygonExtensions')
 const Vertex = require('../lib/converters/Vertex')
 const path = require('path')
 
@@ -33,8 +33,8 @@ describe('UnitSieve', function () {
     const a = new Vertex([0, 0, 0], [0, 0])
     const b = new Vertex([2, 0, 0], [1, 0])
     const c = new Vertex([2, 2, 0], [1, 1])
-    const face = new Face(a, b, c, material)
-    for (var item of sieve.sieveWith(face, FaceExtensions.split)) {
+    const polygon = new Polygon(material, [a, b, c])
+    for (var item of sieve.sieveWith(polygon, PolygonExtensions.split)) {
       if (item.box.min.x === 0 && item.box.min.y === 1) {
         item.item.should.be.empty()
       }
