@@ -1,3 +1,4 @@
 node_modules
 test/results/*.png
 test/results/*.gif
+.idea

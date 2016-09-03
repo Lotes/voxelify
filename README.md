@@ -1,5 +1,6 @@
 # voxelify
 [ ![Codeship Status for Lotes/voxelify](https://codeship.com/projects/8ed7cc00-3280-0134-875e-56e93ee34f2b/status?branch=master)](https://codeship.com/projects/164726)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 This project can be used to transform a 3D model (OBJ file) into voxel information (3D pixels).
 

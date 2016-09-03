@@ -1,22 +1,22 @@
+/* globals describe, it, before */
 const ThreeExtensions = require('../lib/converters/ThreeExtensions')
-const THREE = ThreeExtensions.THREE
 const path = require('path')
 const Face = require('../lib/converters/Face')
 const FaceExtensions = require('../lib/converters/FaceExtensions')
 const Vertex = require('../lib/converters/Vertex')
 
-describe('FaceExtensions', function() {
+describe('FaceExtensions', function () {
   const url = path.join(__dirname, 'data/cube/cube.png')
   var material
 
-  before(function() {
+  before(function () {
     return ThreeExtensions.loadTexture(url)
-      .then(function(texture) {
+      .then(function (texture) {
         material = texture
       })
   })
 
-  it('should return green color', function() {
+  it('should return green color', function () {
     const a = new Vertex([0, 0, 0], [0, 0])
     const b = new Vertex([0, 0, 1], [0, 1])
     const c = new Vertex([1, 0, 1], [1, 1])

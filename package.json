@@ -13,10 +13,12 @@
   },
   "devDependencies": {
     "mocha": "^2.5.3",
-    "should": "^9.0.2"
+    "should": "^9.0.2",
+    "standard": "^8.0.0"
   },
   "scripts": {
-    "test": "mocha --require should --reporter spec",
+    "test": "standard && mocha --require should --reporter spec",
+    "vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
     "uml": "node doc/uml/generate.js doc/uml"
   },
   "repository": {
@@ -28,5 +30,10 @@
   "bugs": {
     "url": "https://github.com/Lotes/voxelify/issues"
   },
-  "homepage": "https://github.com/Lotes/voxelify#readme"
+  "homepage": "https://github.com/Lotes/voxelify#readme",
+  "standard": {
+    "ignore": [
+      "lib/converters/OBJMTLLoader.js"
+    ]
+  }
 }

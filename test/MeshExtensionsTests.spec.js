@@ -1,22 +1,21 @@
+/* globals describe, beforeEach, it */
+
 const ThreeExtensions = require('../lib/converters/ThreeExtensions')
-const THREE = ThreeExtensions.THREE
 const path = require('path')
-const Promise = require('bluebird')
-const fs = require('fs')
 const MeshExtensions = require('../lib/converters/MeshExtensions')
 
-describe('MeshExtensions', function() {
+describe('MeshExtensions', function () {
   const url = path.join(__dirname, 'data/cube/cube.obj')
   var mesh
 
-  beforeEach(function() {
+  beforeEach(function () {
     return ThreeExtensions.loadOBJ(url)
-      .then(function(object) {
+      .then(function (object) {
         mesh = object
       })
   })
 
-  it('should visit all 12 triangles of the cube', function() {
+  it('should visit all 12 triangles of the cube', function () {
     MeshExtensions.getFaces(mesh).length.should.be.equal(12)
   })
 })
