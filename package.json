@@ -23,6 +23,7 @@
     "test": "standard && mocha --require should --reporter spec",
     "vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
     "uml": "node doc/uml/generate.js doc/uml",
+    "generate-coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
