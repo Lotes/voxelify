@@ -2,3 +2,5 @@ node_modules
 test/results/*.png
 test/results/*.gif
 .idea
+coverage
+npm-debug.log

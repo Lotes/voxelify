@@ -12,14 +12,18 @@
     "three": "^0.79.0"
   },
   "devDependencies": {
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.5",
     "mocha": "^2.5.3",
+    "mocha-lcov-reporter": "^1.2.0",
     "should": "^9.0.2",
     "standard": "^8.0.0"
   },
   "scripts": {
     "test": "standard && mocha --require should --reporter spec",
     "vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
-    "uml": "node doc/uml/generate.js doc/uml"
+    "uml": "node doc/uml/generate.js doc/uml",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
