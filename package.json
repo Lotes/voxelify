@@ -1,44 +1,45 @@
 {
-  "name": "voxelify",
-  "version": "1.0.0",
-  "description": "This project can be used to transform a 3D model (OBJ file) into voxel information (3D pixels).",
-  "main": "lib/index.js",
-  "dependencies": {
-    "bluebird": "^3.4.1",
-    "callsite": "^1.0.0",
-    "canvas": "^1.4.0",
-    "get-installed-path": "^1.0.2",
-    "gifencoder": "^1.0.6",
-    "three": "^0.79.0"
-  },
-  "devDependencies": {
-    "coveralls": "^2.11.12",
-    "istanbul": "^0.4.5",
-    "mocha": "^2.5.3",
-    "mocha-lcov-reporter": "^1.2.0",
-    "should": "^9.0.2",
-    "standard": "^8.0.0"
-  },
-  "scripts": {
-    "test": "standard && mocha --require should --reporter spec",
-    "vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
-    "uml": "node doc/uml/generate.js doc/uml",
-    "generate-coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lotes/voxelify.git"
-  },
-  "author": "Markus Rudolph",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Lotes/voxelify/issues"
-  },
-  "homepage": "https://github.com/Lotes/voxelify#readme",
-  "standard": {
-    "ignore": [
-      "lib/converters/OBJMTLLoader.js"
-    ]
-  }
+	"name": "voxelify",
+	"version": "1.0.0",
+	"description": "This project can be used to transform a 3D model (OBJ file) into voxel information (3D pixels).",
+	"homepage": "https://github.com/Lotes/voxelify#readme",
+	"bugs": {
+		"url": "https://github.com/Lotes/voxelify/issues"
+	},
+	"license": "MIT",
+	"author": "Markus Rudolph",
+	"main": "lib/index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Lotes/voxelify.git"
+	},
+	"scripts": {
+		"test": "standard && mocha --require should --reporter spec",
+		"vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
+		"uml": "node doc/uml/generate.js doc/uml",
+		"generate-coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
+		"coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+	},
+	"dependencies": {
+		"bluebird": "^3.4.1",
+		"callsite": "^1.0.0",
+		"canvas": "^1.4.0",
+		"get-installed-path": "^1.0.2",
+		"gifencoder": "^1.0.6",
+		"three": "^0.79.0"
+	},
+	"devDependencies": {
+		"coveralls": "^2.11.12",
+		"istanbul": "^0.4.5",
+		"mocha": "^2.5.3",
+		"mocha-lcov-reporter": "^1.2.0",
+		"should": "^9.0.2",
+		"standard": "^8.0.0"
+	},
+	"standard": {
+		"ignore": [
+			"lib/converters/OBJMTLLoader.js",
+			"lib/shared/node-three/LoadingManager.js"
+		]
+	}
 }

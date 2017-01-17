@@ -9,7 +9,7 @@ const fs = require('fs')
 const GIFEncoder = require('gifencoder')
 
 describe('THREE basics', function () {
-  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
+  const url = path.join(__dirname, 'data/dk2/DolDonkeykongR1.obj')
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
 
   it('should load OBJ file', function () {

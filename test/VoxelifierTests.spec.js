@@ -9,8 +9,9 @@ const GIFEncoder = require('gifencoder')
 const Promise = require('bluebird')
 
 describe('Voxelifier', function () {
-  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
+  const url = path.join(__dirname, 'data/dk2/DolDonkeykongR1.obj') // 'data/venusaur/Venusaur.obj'
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
+  const size = 40
 
   var object
 
@@ -26,7 +27,7 @@ describe('Voxelifier', function () {
     const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.png')
     const voxelifier = new Voxelifier({
       object: object,
-      size: 50
+      size: size
     })
     const colorGrid = voxelifier.compute()
     return colorGrid.save(fileName)
@@ -36,7 +37,7 @@ describe('Voxelifier', function () {
     this.timeout(40000)
     const voxelifier = new Voxelifier({
       object: object,
-      size: 50
+      size: size
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()
@@ -56,7 +57,7 @@ describe('Voxelifier', function () {
     const HEIGHT = 400
     const voxelifier = new Voxelifier({
       object: object,
-      size: 50
+      size: size
     })
     const colorGrid = voxelifier.compute()
     const mesh = colorGrid.toMesh()

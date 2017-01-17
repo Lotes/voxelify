@@ -4,3 +4,4 @@ test/results/*.gif
 .idea
 coverage
 npm-debug.log
+test/data/dk
