@@ -18,6 +18,7 @@ voxslice3d
   * -p <angle>, --pitch <angle>
   * -r <angle>, --roll <angle>
   * -f <stl|obj|auto>, --format ...
+  * -t <number>, --thickness <number>
 ```
 
 ## Slicing 2D image
@@ -61,7 +62,7 @@ voxstat <filename>
 
 ```
 voxsetpalette
-* -i png in
-* -o png out
+* -i <grid zip in>
+* -o <grid zip out>
 * -p palette
 ```

@@ -16,10 +16,10 @@ Fields:
 * `format` = "flat-v1.0.0"
 * `map`: image path relative to this file
 
-### 3D layered model
+### 3D grid model
 ```json
 {
-  "format": "layered-v1.0.0",
+  "format": "grid-v1.0.0",
   "map": "image.png",
   "layers": [
     {
@@ -40,7 +40,7 @@ Fields:
 ```
 
 Fields:
-* `format` = "layered-v1.0.0"
+* `format` = "grid-v1.0.0"
 * `map`: image path relative to this file (**required**)
 * `layers`: list of layers (**required**), bottom-up, where each item can be `null` for an empty layer, or an object with following fields
   * `source`: rectangle on source image describing the colors of this layer (**required**)
