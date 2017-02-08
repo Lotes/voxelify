@@ -8,31 +8,23 @@
 ```json
 {
   "format": "flat-v1.0.0",
-  "map": "image.png"
+  "spriteId": 0
 }
 ```
 
 Fields:
 * `format` = "flat-v1.0.0"
-* `map`: image path relative to this file
+* `spriteId`: sprite id
 
 ### 3D grid model
 ```json
 {
   "format": "grid-v1.0.0",
-  "map": "image.png",
   "layers": [
     {
-      "source": {
-        "x": 0,
-        "y": 0,
-        "width": 16,
-        "height": 16
-      },
-      "target": {
-        "x": 0,
-        "y": 0
-      }    
+      "spriteId": 123,
+      "targetX": 0,
+      "targetY": 2
     },
     null
   ]
@@ -41,16 +33,11 @@ Fields:
 
 Fields:
 * `format` = "grid-v1.0.0"
-* `map`: image path relative to this file (**required**)
 * `layers`: list of layers (**required**), bottom-up, where each item can be `null` for an empty layer, or an object with following fields
-  * `source`: rectangle on source image describing the colors of this layer (**required**)
-    * `x`: Integer (**required**)
-    * `y`: Integer (**required**)
-    * `width`: Integer (**required**)
-    * `height`: Integer (**required**)
-  * `target`: point where to place the colors on this layer (**optional**)
-    * `x`: Integer (**optional**, default is 0)
-    * `y`: Integer (**optional**, default is 0)
+  * `spriteId`: Integer source spriteId (**required**)
+  * point where to place the colors on this layer (**optional**)
+    * `targetX`: Integer (**optional**, default is 0)
+    * `targetY`: Integer (**optional**, default is 0)
 
 ### 3D assembled model
 
@@ -59,15 +46,13 @@ Fields:
 ```json
 {
   "format": "assembled-v1.0.0",
-  "map": "image.png",
   "definitions": {
     "side": {
       "type": "data",
-      "source": {
-        "x": 12,
-        "y": 23,
-        "width": 16,
-        "height": 17
+      "sprite": {
+        "id": 456,
+        "centerX": 3,
+        "centerY": 4
       },
       "translation": {
         "x": 1,
@@ -86,7 +71,14 @@ Fields:
   "children": [
     {
       "type": "use",
-      "reference": "side"
+      "reference": "side",
+      "rotation": {
+        "type": "quaternion",
+        "w": 1,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
     }, {
       "type": "group",
       "children": []
@@ -99,7 +91,6 @@ Fields:
 
 Model
 * `format` = "assembled-v1.0.0"
-* `map`: relative image path
 * `definitions`: map of String => `Part`
 * `children`: list of `Part`
 
@@ -110,11 +101,9 @@ Model
 * rotation will be applied at the translated location
 
 Data (extends *Part*)
-* `source`: rectangle for addressing the part of the map image that shall be placed here
-  * `x`: int
-  * `y`: int
-  * `width`: int
-  * `height`: int
+* `spriteId`: int, sprite id
+* `centerX`: int
+* `centerY`: int
 
 Use (extends *Part*)
 * `reference`: String, a valid definition name
