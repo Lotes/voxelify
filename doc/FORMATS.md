@@ -7,19 +7,19 @@
 ### 2D model
 ```json
 {
-  "format": "flat-v1.0.0",
+  "format": "flat-1.0.0",
   "spriteId": 0
 }
 ```
 
 Fields:
-* `format` = "flat-v1.0.0"
+* `format` = "flat-1.0.0"
 * `spriteId`: sprite id
 
 ### 3D grid model
 ```json
 {
-  "format": "grid-v1.0.0",
+  "format": "grid-1.0.0",
   "layers": [
     {
       "spriteId": 123,
@@ -32,7 +32,7 @@ Fields:
 ```
 
 Fields:
-* `format` = "grid-v1.0.0"
+* `format` = "grid-1.0.0"
 * `layers`: list of layers (**required**), bottom-up, where each item can be `null` for an empty layer, or an object with following fields
   * `spriteId`: Integer source spriteId (**required**)
   * point where to place the colors on this layer (**optional**)
@@ -45,7 +45,7 @@ Fields:
 
 ```json
 {
-  "format": "assembled-v1.0.0",
+  "format": "assembled-1.0.0",
   "definitions": {
     "side": {
       "type": "data",
@@ -88,7 +88,7 @@ Fields:
 #### Classes
 
 Model
-* `format` = "assembled-v1.0.0"
+* `format` = "assembled-1.0.0"
 * `definitions`: map of String => `Part`
 * `children`: list of `Part`
 

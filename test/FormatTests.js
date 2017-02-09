@@ -5,17 +5,24 @@ const validate = require('jsonschema').validate
 const flatSchema = require('../lib/formats/flat/model.schema.json')
 const gridSchema = require('../lib/formats/grid/model.schema.json')
 const assembledSchema = require('../lib/formats/assembled/model.schema.json')
-const tagsSchema = require('../lib/formats/base/tags.schema.json')
+const tagsSchema = require('../lib/formats/tags.schema.json')
+const Keys = require('../lib/formats/Keys')
+const spriteIdValidator = require('../lib/formats/spriteId.validator')
+
+function addSprite (container) {
+  let sprite = container.addSprite()
+  sprite.setPixel(0, 0, 0xff000000)
+  sprite.setPixel(10, 0, 0xff000000)
+  sprite.setPixel(0, 10, 0xff000000)
+  sprite.setPixel(10, 10, 0xff000000)
+  return sprite
+}
 
 describe('Format', function () {
   describe('Container', function () {
     it('should save and load', function (done) {
       let container = new Container()
-      let sprite = container.addSprite()
-      sprite.setPixel(0, 0, 0xff000000)
-      sprite.setPixel(10, 0, 0xff000000)
-      sprite.setPixel(0, 10, 0xff000000)
-      sprite.setPixel(10, 10, 0xff000000)
+      addSprite(container)
       container.setMetaObject('meta', {
         hallo: 'welt'
       })
@@ -41,6 +48,40 @@ describe('Format', function () {
     })
   })
 
+  describe('Validators', function () {
+    it('should accept valid sprite ids', function () {
+      let container = new Container()
+      let sprite = addSprite(container)
+      container.setMetaObject(Keys.ModelKey, {
+        spriteId: sprite.id,
+        xxx: {
+          spriteId: sprite.id
+        }
+      })
+      spriteIdValidator(container)
+    })
+
+    it('should detect missing sprites', function () {
+      let container = new Container()
+      container.setMetaObject(Keys.ModelKey, {
+        spriteId: 123
+      })
+      function executeValidator () {
+        spriteIdValidator(container)
+      }
+      executeValidator.should.throwError()
+    })
+
+    it('should detect unnecessary sprites', function () {
+      let container = new Container()
+      addSprite(container)
+      function executeValidator () {
+        spriteIdValidator(container)
+      }
+      executeValidator.should.throwError()
+    })
+  })
+
   describe('Schemas', function () {
     it('should accept tags', function () {
       validate(['a', 'b', 'c'], tagsSchema).valid.should.be.true()
@@ -48,14 +89,14 @@ describe('Format', function () {
 
     it('should accept flat', function () {
       validate({
-        format: 'flat-v1.0.0',
+        format: 'flat-1.0.0',
         spriteId: 123
       }, flatSchema).valid.should.be.true()
     })
 
     it('should accept grid', function () {
       validate({
-        format: 'grid-v1.0.0',
+        format: 'grid-1.0.0',
         layers: [
           null,
           { spriteId: 123, targetX: 0, targetY: 0 },
@@ -66,7 +107,7 @@ describe('Format', function () {
 
     it('should accept assembled', function () {
       validate({
-        format: 'assembled-v1.0.0',
+        format: 'assembled-1.0.0',
         definitions: {
           side: {
             type: 'data',

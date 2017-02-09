@@ -4,7 +4,7 @@
   "properties": {
     "format": {
       "type": "string",
-      "enum": ["flat-v1.0.0"]
+      "enum": ["flat-1.0.0"]
     },
     "spriteId": {
       "type": "integer"

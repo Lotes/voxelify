@@ -115,7 +115,7 @@
   "properties": {
     "format": {
       "type": "string",
-      "enum": ["assembled-v1.0.0"]
+      "enum": ["assembled-1.0.0"]
     },
     "definitions": {
       "type": "object",

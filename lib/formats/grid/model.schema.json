@@ -4,7 +4,7 @@
   "properties": {
     "format": {
       "type": "string",
-      "enum": ["grid-v1.0.0"]
+      "enum": ["grid-1.0.0"]
     },
     "layers": {
       "type": "array",
