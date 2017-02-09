@@ -49,11 +49,9 @@ Fields:
   "definitions": {
     "side": {
       "type": "data",
-      "sprite": {
-        "id": 456,
-        "centerX": 3,
-        "centerY": 4
-      },
+      "spriteId": 456,
+      "centerX": 3,
+      "centerY": 4,
       "translation": {
         "x": 1,
         "y": 2,
