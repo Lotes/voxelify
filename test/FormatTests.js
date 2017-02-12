@@ -49,87 +49,117 @@ describe('Format', function () {
   })
 
   describe('Validators', function () {
-    it('should accept valid sprite ids', function () {
-      let container = new Container()
-      let sprite = addSprite(container)
-      container.setMetaObject(Keys.ModelKey, {
-        spriteId: sprite.id,
-        xxx: {
-          spriteId: sprite.id
+    describe('spriteId', function() {
+      function verifier(container) {
+        return function executeValidator () {
+          spriteIdValidator(container)
         }
-      })
-      spriteIdValidator(container)
-    })
-
-    it('should detect missing sprites', function () {
-      let container = new Container()
-      container.setMetaObject(Keys.ModelKey, {
-        spriteId: 123
-      })
-      function executeValidator () {
-        spriteIdValidator(container)
       }
-      executeValidator.should.throwError()
-    })
 
-    it('should detect unnecessary sprites', function () {
-      let container = new Container()
-      addSprite(container)
-      function executeValidator () {
-        spriteIdValidator(container)
-      }
-      executeValidator.should.throwError()
+      it('should accept valid sprite ids', function () {
+        let container = new Container()
+        let sprite = addSprite(container)
+        container.setMetaObject(Keys.ModelKey, {
+          spriteId: sprite.id,
+          xxx: {
+            spriteId: sprite.id
+          }
+        })
+        verifier(container).should.not.throwError()
+      })
+
+      it('should detect missing sprites', function () {
+        let container = new Container()
+        container.setMetaObject(Keys.ModelKey, {
+          spriteId: 123
+        })
+        verifier(container).should.throwError()
+      })
+
+      it('should detect unnecessary sprites', function () {
+        let container = new Container()
+        addSprite(container)
+        verifier(container).should.throwError()
+      })
     })
   })
 
   describe('Schemas', function () {
-    it('should accept tags', function () {
-      validate(['a', 'b', 'c'], tagsSchema).valid.should.be.true()
-    })
-
-    it('should accept flat', function () {
-      validate({
-        format: 'flat-1.0.0',
-        spriteId: 123
-      }, flatSchema).valid.should.be.true()
-    })
-
-    it('should accept grid', function () {
-      validate({
-        format: 'grid-1.0.0',
-        layers: [
-          null,
-          { spriteId: 123, targetX: 0, targetY: 0 },
-          { spriteId: 456 }
-        ]
-      }, gridSchema).valid.should.be.true()
-    })
-
-    it('should accept assembled', function () {
-      validate({
-        format: 'assembled-1.0.0',
-        definitions: {
-          side: {
-            type: 'data',
-            spriteId: 123,
-            centerX: 0,
-            centerY: 0,
-            translation: { x: 1, y: 2, z: 3.3 },
-            rotation: { type: 'quaternion', w: 1, x: 0, y: 0, z: 0 }
+    function createVerifier(schema) {
+      return function verifier(model) {
+        return function() {
+          if(!validate(model, schema).valid) {
+            throw new Error('Schema mismatch!')
           }
-        },
-        children: [
-          {
-            type: 'group',
-            children: []
+        }
+      }
+    }
+
+    describe('tags', function() {
+      let verifier = createVerifier(tagsSchema)
+
+      it('should accept tags', function () {
+        verifier(['a', 'b', 'c']).should.not.throwError()
+      })
+
+      it('should reject non-unique tags', function () {
+        verifier(['a', 'a']).should.throwError()
+      })
+    })
+
+    describe('flat-1.0.0', function() {
+      let verifier = createVerifier(flatSchema)
+
+      it('should accept flat', function () {
+        verifier({
+          format: 'flat-1.0.0',
+          spriteId: 123
+        }).should.not.throwError()
+      })
+    })
+
+    describe('grid-1.0.0', function() {
+      let verifier = createVerifier(gridSchema)
+      it('should accept grid', function () {
+        verifier({
+          format: 'grid-1.0.0',
+          layers: [
+            null,
+            { spriteId: 123, targetX: 0, targetY: 0 },
+            { spriteId: 456 }
+          ]
+        }).should.not.throwError()
+      })
+    })
+
+    describe('assembled-1.0.0', function() {
+      let verifier = createVerifier(assembledSchema)
+      it('should accept assembled', function () {
+        verifier({
+          format: 'assembled-1.0.0',
+          definitions: {
+            side: {
+              type: 'data',
+              spriteId: 123,
+              centerX: 0,
+              centerY: 0,
+              translation: { x: 1, y: 2, z: 3.3 },
+              rotation: { type: 'quaternion', w: 1, x: 0, y: 0, z: 0 }
+            }
           },
-          {
-            type: 'use',
-            reference: 'side',
-            rotation: { type: 'euler', order: 'xyz', x: 90, y: 90, z: 0 }
-          }
-        ]
-      }, assembledSchema).valid.should.be.true()
+          children: [
+            {
+              type: 'group',
+              children: []
+            },
+            {
+              type: 'use',
+              reference: 'side',
+              rotation: { type: 'euler', order: 'xyz', x: 90, y: 90, z: 0 }
+            }
+          ]
+        }).should.not.throwError()
+      })
     })
   })
 })
