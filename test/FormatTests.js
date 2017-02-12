@@ -1,10 +1,10 @@
 /* globals describe, it */
 
-const Container = require('../lib/formats/base/Container')
+const Container = require('../lib/formats/Container')
 const validate = require('jsonschema').validate
-const flatSchema = require('../lib/formats/flat/model.schema.json')
-const gridSchema = require('../lib/formats/grid/model.schema.json')
-const assembledSchema = require('../lib/formats/assembled/model.schema.json')
+const flatSchema = require('../lib/formats/flat/1.0.0/model.schema.json')
+const gridSchema = require('../lib/formats/grid/1.0.0/model.schema.json')
+const assembledSchema = require('../lib/formats/assembled/1.0.0/model.schema.json')
 const tagsSchema = require('../lib/formats/tags.schema.json')
 const Keys = require('../lib/formats/Keys')
 const spriteIdValidator = require('../lib/formats/spriteId.validator')
