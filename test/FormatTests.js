@@ -49,8 +49,8 @@ describe('Format', function () {
   })
 
   describe('Validators', function () {
-    describe('spriteId', function() {
-      function verifier(container) {
+    describe('spriteId', function () {
+      function verifier (container) {
         return function executeValidator () {
           spriteIdValidator(container)
         }
@@ -85,17 +85,17 @@ describe('Format', function () {
   })
 
   describe('Schemas', function () {
-    function createVerifier(schema) {
-      return function verifier(model) {
-        return function() {
-          if(!validate(model, schema).valid) {
+    function createVerifier (schema) {
+      return function verifier (model) {
+        return function execute () {
+          if (!validate(model, schema).valid) {
             throw new Error('Schema mismatch!')
           }
         }
       }
     }
 
-    describe('tags', function() {
+    describe('tags', function () {
       let verifier = createVerifier(tagsSchema)
 
       it('should accept tags', function () {
@@ -107,7 +107,7 @@ describe('Format', function () {
       })
     })
 
-    describe('flat-1.0.0', function() {
+    describe('flat-1.0.0', function () {
       let verifier = createVerifier(flatSchema)
 
       it('should accept flat', function () {
@@ -118,7 +118,7 @@ describe('Format', function () {
       })
     })
 
-    describe('grid-1.0.0', function() {
+    describe('grid-1.0.0', function () {
       let verifier = createVerifier(gridSchema)
       it('should accept grid', function () {
         verifier({
@@ -132,7 +132,7 @@ describe('Format', function () {
       })
     })
 
-    describe('assembled-1.0.0', function() {
+    describe('assembled-1.0.0', function () {
       let verifier = createVerifier(assembledSchema)
       it('should accept assembled', function () {
         verifier({
