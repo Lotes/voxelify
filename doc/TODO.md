@@ -4,6 +4,7 @@
 
 * define boards, all concepts together work only with grids
 * use `web-gl` for server-side rendering, it will not work (tryed at August 2016)
+* use Typescript, Javascript is sufficient 
 
 ## General
 

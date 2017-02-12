@@ -1,89 +1,69 @@
-# Commands
+# Commands 2
 
-## Generate from 3D model
-
-* Status: analysis
-* Priority: core feature
+Split all commands to different executables with exactly one task.
 
 ```
-> voxelify
-    --generate
-    --input-file model.obj
-    --size 20
-    [--output-file model.json]
-    [--yaw 90]
-    [--pitch 20]
-    [--roll 10]
-    [--palette palette.json]
-    [--preview-image preview.png]
-    [--preview-animation preview.gif]
-    [--preview-width 600]
-    [--preview-height 400]
-    [--force]
-    [--progress]
-
-creating model.json + model.map.png
+* --progress, print percentual progress to `stderr`
 ```
 
-Mode arguments:
-* `--generate`, required, the current tool mode
-
-Input arguments:
-* `--input-file <model.obj>`, required, the input model path
-  * currently only OBJ file format supported!
-* `--size <int>`, required, the maximal width/depth/height of the model in units
-* `--yaw <float>`, optional, euler rotation in degrees for the model, defaults to 0
-* `--pitch <float>`, optional, euler rotation in degrees for the model, defaults to 0
-* `--roll <float>`, optional, euler rotation in degrees for the model, defaults to 0
-* `--palette <palette.json>`, optional, path to palette. Only colors of this palette will be used.
-
-Output arguments:
-* `--progress`, optional, show progress via standard error stream `stderr`
-* `--force`, optional, will overwrite existing files
-* `--preview-width <int>`, required `--preview-image` and `--preview-animation`, the actual output width
-* `--preview-height <int>`, required `--preview-image` and `--preview-animation`, the actual output height
-* at least one must be set:
-  * aborts if files already exist, see `--force`
-  * `--output-file <model.json>`, optional, the target file path for voxelified model
-    * a `model.map.png` with packed color information will also be generated
-  * `--preview-image <preview.png>`, optional, the target path for saving a preview image
-  * `--preview-animation <preview.gif>`, optional, the target path for saving a preview animation
-
-### Flow
-
-Actions:
-* read arguments
-* validate arguments
-* load model
-* rotate model
-* [voxelify model](ALGORITHM.md)
-* apply palette
-* render scene to PNG file
-* render scene to GIF file
-* save to voxelify format
-
-![flow chart](uml/generate-flow.puml.png)
-
-## Initialize palette
-
-* Status: idea
-* Priority: middle
+## Slicing 3D models
 
 ```
-> voxelify --palette --output-file palette.json
-
-creating palette.json
+voxslice3d
+  * -i <filename>, --input <filename>
+  * -m <size>, --min-size <size>
+  * -M <size>, --max-size <size>
+  * -o <filename>, --output <filename>
+  * -r <xyz|xzy|yzx|yxz|zxy|zyx>, --rotation-order <xyz|xzy|yzx|yxz|zxy|zyx>
+  * -x <angle>, --x-axis <angle>
+  * -y <angle>, --y-axis <angle>
+  * -z <angle>, --z-axis <angle>
+  * -f <stl|obj|auto>, --format ...
+  * -t <number>, --thickness <number>
 ```
 
-## Export voxel model
-
-* Status: idea
-* Priority: low
+## Slicing 2D image
 
 ```
-> voxelify
-  --export
-  --input-file model.json
-  --output-file xyz.abc
-  --format (3D|pdf|image)
+voxslice2d
+  * -i <filename>, --input <filename>
+  * -m <size>, --min-size <size>
+  * -M <size>, --max-size <size>
+  * -o <filename>, --output <filename>
+  * -a <angle>, --angle <angle>
+```
+
+## Import layer for layer as grid
+
+```
+voxjoingrid
+* -i <filenamepattern>, --input <filenamepattern>
+* -o <filename>, --output <filename>
+* -s <asc|desc>, --sort <asc|desc>
+```
+
+## Export grid layer for layer
+
+```
+voxsplitgrid
+* -i <filename>, --input <filename>
+* -o <filenamepatern>, --output <filenamepattern>
+* -s <asc|desc>, --sort <asc|desc>
+```
+
+## Statistics
+
+```
+voxstat <filename>
+```
+
+## Preview
+
+## Colorize
+
+```
+voxsetpalette
+* -i <grid zip in>
+* -o <grid zip out>
+* -p palette
 ```

@@ -24,6 +24,7 @@
     "bluebird": "^3.4.1",
     "callsite": "^1.0.0",
     "canvas": "^1.4.0",
+    "commander": "^2.9.0",
     "get-installed-path": "^1.0.2",
     "gifencoder": "^1.0.6",
     "jsonpath-plus": "^0.16.0",
