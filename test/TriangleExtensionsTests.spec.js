@@ -1,5 +1,7 @@
 /* globals describe, it */
 
+'use strict'
+
 const TriangleExtensions = require('../lib/converters/TriangleExtensions')
 
 describe('TriangleExtensions', function () {

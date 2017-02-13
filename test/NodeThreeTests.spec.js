@@ -1,5 +1,7 @@
 /* globals describe, it */
 
+'use strict'
+
 const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const THREE = ThreeRenderExtensions.THREE

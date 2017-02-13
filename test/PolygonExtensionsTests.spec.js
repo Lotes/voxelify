@@ -1,4 +1,7 @@
 /* globals describe, it, before */
+
+'use strict'
+
 const ThreeExtensions = require('../lib/converters/ThreeExtensions')
 const path = require('path')
 const Polygon = require('../lib/converters/Polygon')

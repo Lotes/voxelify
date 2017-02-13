@@ -1,5 +1,7 @@
 /* globals describe, it */
 
+'use strict'
+
 const Container = require('../lib/formats/Container')
 const validate = require('jsonschema').validate
 const flatSchema = require('../lib/formats/flat/1.0.0/model.schema.json')
@@ -9,6 +11,11 @@ const tagsSchema = require('../lib/formats/tags.schema.json')
 const Keys = require('../lib/formats/Keys')
 const spriteIdValidator = require('../lib/formats/spriteId.validator')
 
+/**
+ * Adds a sprite to a given container.
+ * @param {Container} container the container which should get a new sprite
+ * @returns {Sprite} the sprite that was added
+ */
 function addSprite (container) {
   let sprite = container.addSprite()
   sprite.setPixel(0, 0, 0xff000000)
@@ -50,6 +57,11 @@ describe('Format', function () {
 
   describe('Validators', function () {
     describe('spriteId', function () {
+      /**
+       * Create a verifier for a given container
+       * @param {Container} container the container which should be validated
+       * @returns {Function} returns a executable function which throws an error if the passed container is valid
+       */
       function verifier (container) {
         return function executeValidator () {
           spriteIdValidator(container)
@@ -85,6 +97,11 @@ describe('Format', function () {
   })
 
   describe('Schemas', function () {
+    /**
+     * Create a schema verifier
+     * @param {JSONSchema} schema the JSON schema to verify
+     * @returns {Function} returns a executable function which throws an error if the passed object is not schema valid
+     */
     function createVerifier (schema) {
       return function verifier (model) {
         return function execute () {

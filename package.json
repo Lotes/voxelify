@@ -14,11 +14,11 @@
     "url": "git+https://github.com/Lotes/voxelify.git"
   },
   "scripts": {
-    "test": "standard && mocha --require should --reporter spec",
-    "vox-test": "standard test/VoxelifierTests.spec.js.backup && mocha --require should --reporter spec test/VoxelifierTests.spec.js.backup",
+    "lint": "./node_modules/.bin/eslint lib test && ./node_modules/.bin/standard",
+    "test": "mocha --require should --reporter spec",
     "uml": "node doc/uml/generate.js doc/uml",
-    "generate-coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "generate-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --require should -R spec && cat ./coverage/lcov.info | node ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
     "bluebird": "^3.4.1",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.12",
+    "eslint": "^3.15.0",
     "istanbul": "^0.4.5",
     "mocha": "^2.5.3",
     "mocha-lcov-reporter": "^1.2.0",
@@ -43,7 +44,6 @@
   },
   "standard": {
     "ignore": [
-      "lib/converters/OBJMTLLoader.js",
       "lib/shared/node-three/LoadingManager.js"
     ]
   }

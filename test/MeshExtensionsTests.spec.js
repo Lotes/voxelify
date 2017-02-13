@@ -1,12 +1,14 @@
 /* globals describe, beforeEach, it */
 
+'use strict'
+
 const ThreeExtensions = require('../lib/converters/ThreeExtensions')
 const path = require('path')
 const MeshExtensions = require('../lib/converters/MeshExtensions')
 
 describe('MeshExtensions', function () {
   const url = path.join(__dirname, 'data/cube/cube.obj')
-  var mesh
+  let mesh
 
   beforeEach(function () {
     return ThreeExtensions.loadOBJ(url)

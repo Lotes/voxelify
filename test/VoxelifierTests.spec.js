@@ -1,5 +1,7 @@
 /* globals describe, before, it */
 
+'use strict'
+
 const Voxelifier = require('../lib/converters/Voxelifier')
 const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
