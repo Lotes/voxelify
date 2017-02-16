@@ -1,6 +1,5 @@
 node_modules
-test/results/*.png
-test/results/*.gif
+test/results
 .idea
 coverage
 npm-debug.log

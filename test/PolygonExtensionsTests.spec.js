@@ -25,6 +25,6 @@ describe('PolygonExtensions', function () {
     const c = new Vertex([1, 0, 1], [1, 1])
     const polygon = new Polygon(material, [a, b, c])
     const color = PolygonExtensions.getColor(polygon)
-    color.value.should.be.equal(0x00ff00)
+    color.value.should.be.equal(0xff00ff00)
   })
 })

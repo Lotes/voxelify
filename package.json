@@ -14,7 +14,8 @@
     "url": "git+https://github.com/Lotes/voxelify.git"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint lib test && ./node_modules/.bin/standard",
+    "lint": "./node_modules/.bin/eslint lib test",
+    "standard": "./node_modules/.bin/standard",
     "test": "mocha --require should --reporter spec",
     "uml": "node doc/uml/generate.js doc/uml",
     "generate-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report html -- --require should -R spec",
@@ -25,7 +26,6 @@
     "callsite": "^1.0.0",
     "canvas": "^1.4.0",
     "commander": "^2.9.0",
-    "get-installed-path": "^1.0.2",
     "gifencoder": "^1.0.6",
     "jsonpath-plus": "^0.16.0",
     "jsonschema": "^1.1.1",

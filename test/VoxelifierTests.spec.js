@@ -10,6 +10,9 @@ const fs = require('fs')
 const GIFEncoder = require('gifencoder')
 const Promise = require('bluebird')
 const THREE = ThreeRenderExtensions.THREE
+const exportMesh = require('../lib/exporters/exportMesh')
+const exportGridContainer = require('../lib/exporters/exportGridContainer')
+const Formats = require('../lib/formats/index')
 
 describe('Voxelifier', function () {
   const url = path.join(__dirname, 'data/dk2/DolDonkeykongR1.obj') // 'data/venusaur/Venusaur.obj'
@@ -27,17 +30,20 @@ describe('Voxelifier', function () {
 
   it('should render all slices of given mesh', function () {
     this.timeout(40000)
-    const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.png')
+    const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.zip')
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
     const colorGrid = voxelifier.compute()
-    return colorGrid.save(fileName)
+    const container = exportGridContainer(colorGrid)
+    return Formats.save(container).then(buffer => {
+      fs.writeFileSync(fileName, buffer)
+    })
   })
 
   it('should render voxelified mesh', function () {
     this.timeout(40000)
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
     const colorGrid = voxelifier.compute()
-    const mesh = colorGrid.toMesh()
+    const mesh = exportMesh(colorGrid)
     return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function (normalizedMesh) {
         return ThreeRenderExtensions.captureByCamera(normalizedMesh, 600, 400)
@@ -54,7 +60,7 @@ describe('Voxelifier', function () {
     const HEIGHT = 400
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
     const colorGrid = voxelifier.compute()
-    const mesh = colorGrid.toMesh()
+    const mesh = exportMesh(colorGrid)
     return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function (mesh) {
         return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
