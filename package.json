@@ -48,6 +48,6 @@
     ]
   },
   "bin": {
-    "voxslice3d": "lib/commands/slice3d/index.js"
+    "voxslice3d": "lib/commands/voxslice3d.js"
   }
 }
