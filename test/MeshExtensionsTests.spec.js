@@ -2,7 +2,7 @@
 
 'use strict'
 
-const loadObj = require('../lib/loaders/ObjMatLoader')
+const load = require('../lib/loaders/index')
 const path = require('path')
 const MeshExtensions = require('../lib/slicer/MeshExtensions')
 
@@ -11,7 +11,7 @@ describe('MeshExtensions', function () {
   let mesh
 
   beforeEach(function () {
-    return loadObj(url)
+    return load('obj', url)
       .then(function (object) {
         mesh = object
       })

@@ -3,7 +3,7 @@
 'use strict'
 
 const Voxelifier = require('../lib/slicer/Voxelifier')
-const loadObj = require('../lib/loaders/ObjMatLoader')
+const load = require('../lib/loaders/index')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const path = require('path')
 const fs = require('fs')
@@ -22,7 +22,7 @@ describe('Voxelifier', function () {
   let object
 
   before(function () {
-    return loadObj(url)
+    return load('obj', url)
       .then(function (obj) {
         object = obj
       })

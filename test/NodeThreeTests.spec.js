@@ -2,7 +2,7 @@
 
 'use strict'
 
-const loadObj = require('../lib/loaders/ObjMatLoader')
+const load = require('../lib/loaders/index')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const THREE = ThreeRenderExtensions.THREE
 const path = require('path')
@@ -14,7 +14,7 @@ describe('THREE basics', function () {
 
   it('should load OBJ file', function () {
     this.timeout(1000)
-    return loadObj(url)
+    return load('obj', url)
       .then(function (object) {
         object.should.be.ok()
       })
@@ -22,12 +22,12 @@ describe('THREE basics', function () {
 
   it('should transform OBJ', function () {
     this.timeout(1000)
-    return loadObj(url)
+    return load('obj', url)
       .then(ThreeRenderExtensions.normalizeSize)
       .then(function (mesh) {
         const epsilon = 0.00001
         var box = new THREE.Box3().setFromObject(mesh)
-        var size = box.size()
+        var size = box.getSize()
         size.x.should.not.be.above(1 + epsilon)
         size.y.should.not.be.above(1 + epsilon)
         size.z.should.not.be.above(1 + epsilon)
@@ -36,7 +36,7 @@ describe('THREE basics', function () {
 
   it('should render scene', function () {
     this.timeout(10000)
-    return loadObj(url)
+    return load('obj', url)
       .then(ThreeRenderExtensions.normalizeSize)
       .then(function (mesh) {
         return ThreeRenderExtensions.captureByCamera(mesh, 600, 400)
