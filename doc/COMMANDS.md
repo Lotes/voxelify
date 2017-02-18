@@ -1,4 +1,4 @@
-# Commands 2
+# Commands
 
 Split all commands to different executables with exactly one task.
 
@@ -58,6 +58,20 @@ voxstat <filename>
 ```
 
 ## Preview
+
+```
+voxshot filename
+* -o <outname>
+* -f <in-format>
+* ...camera position
+```
+
+```
+voxanimate filename
+* -o <outname>
+* -f <in-format>
+* -v <out-format> ..mpeg, gif
+```
 
 ## Colorize
 
