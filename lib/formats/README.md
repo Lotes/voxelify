@@ -40,3 +40,27 @@ All keys must be lowercase words.
 * Version schemas and validators will only be applied to a specific format version.
 
 All schemas and validators will be loaded automatically. you do not have to enter these files somewhere.
+
+Must-haves
+----------
+
+Every version folder must contain 
+* a `model.schema.json`. It is the actual format descriptor
+* a `toMesh.js` script which exports a function that gets a `Container` and returns a `THREE.Object3D` with some `THREE.Mesh` inside
+
+Template:
+```javascript
+'use strict'
+
+/**
+ * Reads the model meta object and returns a mesh (THREE.Object3D)
+ * @param {Container} container the container with the format of model.schema.json
+ * @returns {THREE.Object3D} a 3D object
+ */
+function toMesh (container) {
+  return container.todo()
+}
+
+module.exports = toMesh
+
+```

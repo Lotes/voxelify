@@ -10,14 +10,12 @@ const fs = require('fs')
 const GIFEncoder = require('gifencoder')
 const Promise = require('bluebird')
 const THREE = ThreeRenderExtensions.THREE
-const exportMesh = require('../lib/exporters/exportMesh')
-const exportGridContainer = require('../lib/slicer/exportGridContainer')
 const Formats = require('../lib/formats/index')
 
 describe('Voxelifier', function () {
-  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
+  const url = path.join(__dirname, 'data/cube/cube.obj')
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
-  const size = 40
+  const size = 5
 
   let object
 
@@ -29,21 +27,20 @@ describe('Voxelifier', function () {
   })
 
   it('should render all slices of given mesh', function () {
-    this.timeout(40000)
+    this.timeout(60000)
     const fileName = path.join(RESULTS_DIRECTORY, 'voxel_map.zip')
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
-    const colorGrid = voxelifier.compute()
-    const container = exportGridContainer(colorGrid)
+    const container = voxelifier.compute()
     return Formats.save(container).then(buffer => {
       fs.writeFileSync(fileName, buffer)
     })
   })
 
   it('should render voxelified mesh', function () {
-    this.timeout(40000)
+    this.timeout(60000)
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
-    const colorGrid = voxelifier.compute()
-    const mesh = exportMesh(colorGrid)
+    const container = voxelifier.compute()
+    const mesh = Formats.toMesh(container)
     return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function (normalizedMesh) {
         return ThreeRenderExtensions.captureByCamera(normalizedMesh, 600, 400)
@@ -55,12 +52,12 @@ describe('Voxelifier', function () {
   })
 
   it('should render an animation of a voxelified mesh', function () {
-    this.timeout(40000)
+    this.timeout(60000)
     const WIDTH = 600
     const HEIGHT = 400
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
-    const colorGrid = voxelifier.compute()
-    const mesh = exportMesh(colorGrid)
+    const container = voxelifier.compute()
+    const mesh = Formats.toMesh(container)
     return ThreeRenderExtensions.normalizeSize(mesh)
       .then(function (mesh) {
         return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
