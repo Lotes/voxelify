@@ -6,8 +6,8 @@
 | master            | developer           |
 | ----------------- | ------------------- |
 | [![Build Status](https://travis-ci.org/Lotes/voxelify.svg?branch=master)](https://travis-ci.org/Lotes/voxelify) | [![Build Status](https://travis-ci.org/Lotes/voxelify.svg?branch=developer)](https://travis-ci.org/Lotes/voxelify) |
-| [![Coverage Status](https://coveralls.io/repos/github/Lotes/voxelify/badge.svg?branch=master)](https://coveralls.io/github/Lotes/voxelify?branch=master) | - |
-| [![Codeship Status](https://codeship.com/projects/8ed7cc00-3280-0134-875e-56e93ee34f2b/status?branch=master)](https://codeship.com/projects/164726) | - |
+| [![Coverage Status](https://coveralls.io/repos/github/Lotes/voxelify/badge.svg?branch=master)](https://coveralls.io/github/Lotes/voxelify?branch=master) | [![Coverage Status](https://coveralls.io/repos/github/Lotes/voxelify/badge.svg?branch=developer)](https://coveralls.io/github/Lotes/voxelify?branch=developer) |
+| [![Codeship Status](https://codeship.com/projects/8ed7cc00-3280-0134-875e-56e93ee34f2b/status?branch=master)](https://codeship.com/projects/164726) | [ ![Codeship Status for Lotes/voxelify](https://app.codeship.com/projects/8ed7cc00-3280-0134-875e-56e93ee34f2b/status?branch=developer)](https://app.codeship.com/projects/164726) |
 | [![bitHound Dependencies](https://www.bithound.io/github/Lotes/voxelify/badges/dependencies.svg)](https://www.bithound.io/github/Lotes/voxelify/master/dependencies/npm) | [![bitHound Dependencies](https://www.bithound.io/github/Lotes/voxelify/badges/dependencies.svg)](https://www.bithound.io/github/Lotes/voxelify/developer/dependencies/npm) |
 | [![bitHound Dev Dependencies](https://www.bithound.io/github/Lotes/voxelify/badges/devDependencies.svg)](https://www.bithound.io/github/Lotes/voxelify/master/dependencies/npm) | [![bitHound Dev Dependencies](https://www.bithound.io/github/Lotes/voxelify/badges/devDependencies.svg)](https://www.bithound.io/github/Lotes/voxelify/developer/dependencies/npm) |
 

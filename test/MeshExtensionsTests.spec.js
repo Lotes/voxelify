@@ -2,16 +2,16 @@
 
 'use strict'
 
-const ThreeExtensions = require('../lib/converters/ThreeExtensions')
+const loadObj = require('../lib/loaders/ObjMatLoader')
 const path = require('path')
-const MeshExtensions = require('../lib/converters/MeshExtensions')
+const MeshExtensions = require('../lib/slicer/MeshExtensions')
 
 describe('MeshExtensions', function () {
   const url = path.join(__dirname, 'data/cube/cube.obj')
   let mesh
 
   beforeEach(function () {
-    return ThreeExtensions.loadOBJ(url)
+    return loadObj(url)
       .then(function (object) {
         mesh = object
       })

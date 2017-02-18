@@ -2,18 +2,18 @@
 
 'use strict'
 
-const ThreeExtensions = require('../lib/converters/ThreeExtensions')
+const nodeThree = require('../lib/shared/node-three/index')
 const path = require('path')
-const Polygon = require('../lib/converters/Polygon')
-const PolygonExtensions = require('../lib/converters/PolygonExtensions')
-const Vertex = require('../lib/converters/Vertex')
+const Polygon = require('../lib/slicer/Polygon')
+const PolygonExtensions = require('../lib/slicer/PolygonExtensions')
+const Vertex = require('../lib/slicer/Vertex')
 
 describe('PolygonExtensions', function () {
   const url = path.join(__dirname, 'data/cube/cube.png')
-  var material
+  let material
 
   before(function () {
-    return ThreeExtensions.loadTexture(url)
+    return nodeThree.loadTexture(url)
       .then(function (texture) {
         material = texture
       })

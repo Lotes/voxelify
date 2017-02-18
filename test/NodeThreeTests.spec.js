@@ -2,19 +2,19 @@
 
 'use strict'
 
-const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
+const loadObj = require('../lib/loaders/ObjMatLoader')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const THREE = ThreeRenderExtensions.THREE
 const path = require('path')
 const fs = require('fs')
 
 describe('THREE basics', function () {
-  const url = path.join(__dirname, 'data/dk2/DolDonkeykongR1.obj')
+  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
 
   it('should load OBJ file', function () {
     this.timeout(1000)
-    return ThreeLoaderExtensions.loadOBJ(url)
+    return loadObj(url)
       .then(function (object) {
         object.should.be.ok()
       })
@@ -22,7 +22,7 @@ describe('THREE basics', function () {
 
   it('should transform OBJ', function () {
     this.timeout(1000)
-    return ThreeLoaderExtensions.loadOBJ(url)
+    return loadObj(url)
       .then(ThreeRenderExtensions.normalizeSize)
       .then(function (mesh) {
         const epsilon = 0.00001
@@ -36,7 +36,7 @@ describe('THREE basics', function () {
 
   it('should render scene', function () {
     this.timeout(10000)
-    return ThreeLoaderExtensions.loadOBJ(url)
+    return loadObj(url)
       .then(ThreeRenderExtensions.normalizeSize)
       .then(function (mesh) {
         return ThreeRenderExtensions.captureByCamera(mesh, 600, 400)

@@ -2,14 +2,14 @@
 
 'use strict'
 
-const ThreeExtensions = require('../lib/converters/ThreeExtensions')
-const THREE = ThreeExtensions.THREE
+const nodeThree = require('../lib/shared/node-three/index')
+const THREE = nodeThree.THREE
 const Box3 = THREE.Box3
 const Vector3 = THREE.Vector3
-const UnitSieve = require('../lib/converters/UnitSieve')
-const Polygon = require('../lib/converters/Polygon')
-const PolygonExtensions = require('../lib/converters/PolygonExtensions')
-const Vertex = require('../lib/converters/Vertex')
+const UnitSieve = require('../lib/slicer/UnitSieve')
+const Polygon = require('../lib/slicer/Polygon')
+const PolygonExtensions = require('../lib/slicer/PolygonExtensions')
+const Vertex = require('../lib/slicer/Vertex')
 const path = require('path')
 
 describe('UnitSieve', function () {
@@ -17,7 +17,7 @@ describe('UnitSieve', function () {
   var material
 
   before(function () {
-    return ThreeExtensions.loadTexture(url)
+    return nodeThree.loadTexture(url)
       .then(function (texture) {
         material = texture
       })
@@ -25,7 +25,8 @@ describe('UnitSieve', function () {
 
   it('should split face leaving one empty voxel', function () {
     /*
-         | X
+     | X
+
          |XX
       ------
         X|XX

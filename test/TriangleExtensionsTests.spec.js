@@ -2,7 +2,7 @@
 
 'use strict'
 
-const TriangleExtensions = require('../lib/converters/TriangleExtensions')
+const TriangleExtensions = require('../lib/slicer/TriangleExtensions')
 
 describe('TriangleExtensions', function () {
   const shouldHaveNPixels = function (triangle, n) {

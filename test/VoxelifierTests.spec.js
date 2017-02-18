@@ -2,8 +2,8 @@
 
 'use strict'
 
-const Voxelifier = require('../lib/converters/Voxelifier')
-const ThreeLoaderExtensions = require('../lib/converters/ThreeExtensions')
+const Voxelifier = require('../lib/slicer/Voxelifier')
+const loadObj = require('../lib/loaders/ObjMatLoader')
 const ThreeRenderExtensions = require('../lib/exporters/renderers/ThreeExtensions')
 const path = require('path')
 const fs = require('fs')
@@ -11,18 +11,18 @@ const GIFEncoder = require('gifencoder')
 const Promise = require('bluebird')
 const THREE = ThreeRenderExtensions.THREE
 const exportMesh = require('../lib/exporters/exportMesh')
-const exportGridContainer = require('../lib/exporters/exportGridContainer')
+const exportGridContainer = require('../lib/slicer/exportGridContainer')
 const Formats = require('../lib/formats/index')
 
 describe('Voxelifier', function () {
-  const url = path.join(__dirname, 'data/dk2/DolDonkeykongR1.obj') // 'data/venusaur/Venusaur.obj'
+  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj')
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
   const size = 40
 
   let object
 
   before(function () {
-    return ThreeLoaderExtensions.loadOBJ(url)
+    return loadObj(url)
       .then(function (obj) {
         object = obj
       })
