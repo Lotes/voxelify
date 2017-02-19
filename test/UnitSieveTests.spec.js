@@ -37,10 +37,10 @@ describe('UnitSieve', function () {
     const b = new Vertex([2, 0, 0], [1, 0])
     const c = new Vertex([2, 2, 0], [1, 1])
     const polygon = new Polygon(material, [a, b, c])
-    for (var item of sieve.sieveWith(polygon, PolygonExtensions.split)) {
+    sieve.sieveWith(polygon, item => {
       if (item.box.min.x === 0 && item.box.min.y === 1) {
         item.item.should.be.empty()
       }
-    }
+    }, PolygonExtensions.split)
   })
 })

@@ -7,8 +7,7 @@ const TriangleExtensions = require('../lib/slicer/TriangleExtensions')
 describe('TriangleExtensions', function () {
   const shouldHaveNPixels = function (triangle, n) {
     var count = 0
-    var iterator = TriangleExtensions.rasterize(triangle)
-    while (!iterator.next().done) count++
+    TriangleExtensions.rasterize(triangle, () => count++)
     count.should.be.equal(n)
   }
 
