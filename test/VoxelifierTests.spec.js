@@ -13,9 +13,9 @@ const THREE = ThreeRenderExtensions.THREE
 const Formats = require('../lib/formats/index')
 
 describe('Voxelifier', function () {
-  const url = path.join(__dirname, 'data/cube/cube.obj')
+  const url = path.join(__dirname, 'data/venusaur/Venusaur.obj') // 'data/cube/cube.obj'
   const RESULTS_DIRECTORY = path.join(__dirname, 'results')
-  const size = 5
+  const size = 30
 
   let object
 
@@ -41,10 +41,7 @@ describe('Voxelifier', function () {
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
     const container = voxelifier.compute()
     const mesh = Formats.toMesh(container)
-    return ThreeRenderExtensions.normalizeSize(mesh)
-      .then(function (normalizedMesh) {
-        return ThreeRenderExtensions.captureByCamera(normalizedMesh, 600, 400)
-      })
+    return ThreeRenderExtensions.captureByCamera(mesh, 600, 400)
       .then(function (scene) {
         let out = fs.createWriteStream(path.join(RESULTS_DIRECTORY, 'voxel_mesh.png'))
         return scene.renderToStream(out)
@@ -58,10 +55,7 @@ describe('Voxelifier', function () {
     const voxelifier = new Voxelifier(object, new THREE.Quaternion(), size, true)
     const container = voxelifier.compute()
     const mesh = Formats.toMesh(container)
-    return ThreeRenderExtensions.normalizeSize(mesh)
-      .then(function (mesh) {
-        return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
-      })
+    return ThreeRenderExtensions.captureByCamera(mesh, WIDTH, HEIGHT)
       .then(function (scene) {
         let angles = []
         for (let angle = 0; angle < 360; angle += 20) {
@@ -76,10 +70,7 @@ describe('Voxelifier', function () {
         encoder.setDelay(50)  // frame delay in ms
         encoder.setQuality(10) // image quality. 10 is default.
         return Promise.each(angles, function (angle) {
-          let rad = angle / 180 * Math.PI
-          let cos = Math.cos(rad)
-          let sin = Math.sin(rad)
-          scene.camera.set(cos, 0, sin)
+          scene.camera.setAngle(angle)
           return scene.renderToStream().then(function (context) {
             encoder.addFrame(context)
           })
