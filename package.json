@@ -50,6 +50,7 @@
   },
   "bin": {
     "voxslice3d": "lib/commands/voxslice3d.js",
+    "voxsplitgrid": "lib/commands/voxsplitgrid.js",
     "voxanimate": "lib/commands/voxanimate.js"
   }
 }
